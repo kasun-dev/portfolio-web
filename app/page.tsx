@@ -8,7 +8,7 @@ import ContactForm from "./InquiryForm";
 function Page() {
   //handle download button
   const handleDownloadCV = () => {
-    window.open('/cv.pdf', '_blank');
+    window.open('./cv.pdf', '_blank');
   };
   //nav bar 
   const [activeSection, setActiveSection] = useState<string>("");
