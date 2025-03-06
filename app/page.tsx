@@ -174,7 +174,7 @@ function Page() {
                 </div>
 
                 
-                <h1 className="text-white text-xl mt-3 px-8">Age: 22 | From Colombo</h1>
+                <h1 className="text-white text-xl mt-3 px-8">Age: 23 | From Colombo</h1>
                 <p className="text-yellow-300 text-m mt-2 px-8">
                   Hello! I’m Kasun Jayamaha, a passionate software engineer currently pursuing my degree at the Sri Lanka 
                   Institute of Information Technology (SLIIT). With a deep interest in technology and a creative mindset, 
