@@ -670,9 +670,9 @@ function Page() {
                         />
                          </td>
                       <td>
-                        <Link href={'https://www.instagram.com/kx.002/'}
+                        <Link href={'https://www.instagram.com/kx.0023/'}
                                   className='hover:bg-yellow-300 hover:text-black px-2 py-1 rounded-md'>
-                                  www.instagram.com/kx.002
+                                  www.instagram.com/kx.0023
                         </Link>
                         
                         </td>
