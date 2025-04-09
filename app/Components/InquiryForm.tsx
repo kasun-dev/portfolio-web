@@ -1,49 +1,58 @@
+// File: InquiryForm.tsx
     import { useState } from "react";
-
+    
     const ContactForm = () => {
-    const [formData, setFormData] = useState({
+      const [formData, setFormData] = useState({
         name: "",
         email: "",
         message: "",
-    });
-    const [status, setStatus] = useState<string | null>(null);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      });
+    
+      const [status, setStatus] = useState<string | null>(null);
+    
+      const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      ) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
+      };
+    
+      const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setStatus(null);
-
+    
         const googleFormUrl =
-        "https://docs.google.com/forms/d/e/1FAIpQLSc2aCuFsjK5n8R9aRmpiOhruipe0iG_nO8n7yjjRVXCwjebnw/formResponse";
-
+          "https://docs.google.com/forms/d/e/1FAIpQLSc2aCuFsjK5n8R9aRmpiOhruipe0iG_nO8n7yjjRVXCwjebnw/formResponse";
+    
         const formBody = new URLSearchParams({
-        "entry.1825895740": formData.name, // Replace with your field IDs
-        "entry.11226799": formData.email,
-        "entry.674492514": formData.message,
+          "entry.1825895740": formData.name,
+          "entry.11226799": formData.email,
+          "entry.674492514": formData.message,
         });
-
+    
         try {
-        const response = await fetch(googleFormUrl, {
+          await fetch(googleFormUrl, {
             method: "POST",
             body: formBody,
             headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+              "Content-Type": "application/x-www-form-urlencoded",
             },
-        });
-
-        if (response.ok || response.status === 0) {
-            setStatus("Form submitted successfully!");
-        } else {
-            setStatus("Failed to submit the form. Please try again.");
-        }
+            mode: "no-cors", // Avoid CORS errors
+          });
+    
+          // Delay message display and reset form
+          setTimeout(() => {
+            setStatus("Inquiry submitted successfully!");
+            setFormData({ name: "", email: "", message: "" });
+    
+            // Hide message after 3 more seconds
+            setTimeout(() => {
+              setStatus(null);
+            }, 2000);
+          }, 500);
         } catch (error) {
-        setStatus("An error occurred. Please try again.");
+          setStatus("An error occurred. Please try again.");
         }
-    };
+      };
 
     return (
         <div>
@@ -99,6 +108,16 @@
                         </div>
                         
                     </form>
+
+                    {status && (
+                    <div className="fixed bottom-20 center bg-yellow-300 text-black px-4 py-2 rounded shadow-lg z-50 transition-opacity duration-300 ease-in-out animate-pulse">
+                        {status}
+                        
+                    </div>
+                    )}    
+                    
+
+                    
         </div>
     );
     };
