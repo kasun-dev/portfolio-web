@@ -10,6 +10,7 @@ import ContactPage from "./Pages/contactPage";
 import ProjectPage from "./Pages/projectsPage";
 import SkillsPage from "./Pages/skillPage";
 import MHomePage from "./mobilePages/homePage";
+import MAboutPage from "./mobilePages/aboutPage";
 
 
 function Page() {
@@ -28,6 +29,7 @@ function Page() {
 
           {/*about section*/}
           <AboutPage/>
+          <MAboutPage/>
 
           {/*projects page start here*/}
           <ProjectPage/>
