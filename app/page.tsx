@@ -9,6 +9,7 @@ import Footer from "./Components/footer";
 import ContactPage from "./Pages/contactPage";
 import ProjectPage from "./Pages/projectsPage";
 import SkillsPage from "./Pages/skillPage";
+import MHomePage from "./mobilePages/homePage";
 
 
 function Page() {
@@ -23,6 +24,7 @@ function Page() {
 
           {/*home page*/}
           <HomePage/>
+          <MHomePage/>
 
           {/*about section*/}
           <AboutPage/>
