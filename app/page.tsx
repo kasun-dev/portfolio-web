@@ -5,12 +5,14 @@ import Link from 'next/link';
 import NavBar from "./Components/NavBar";
 import HomePage from "./Pages/homePage";
 import AboutPage from "./Pages/aboutPage";
+import MFooter from "./Components/footerM";
 import Footer from "./Components/footer";
 import ContactPage from "./Pages/contactPage";
 import ProjectPage from "./Pages/projectsPage";
 import SkillsPage from "./Pages/skillPage";
 import MHomePage from "./mobilePages/homePage";
 import MAboutPage from "./mobilePages/aboutPage";
+import MContactPage from "./mobilePages/contactPage";
 
 
 function Page() {
@@ -39,9 +41,11 @@ function Page() {
 
           {/*contact page*/}
           <ContactPage/>
+          <MContactPage/>
           
           {/*footer is here*/}
           <Footer/>
+          
         </div>
     </div>
   );

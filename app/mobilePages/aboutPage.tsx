@@ -34,17 +34,10 @@ const MAboutPage = () => {
                 I’m eager to collaborate and bring your vision to life. Reach out to connect or see my work!
                 </p>
 
-                <div className="flex justify-center items-center h-1/2">
-                <img
-                  src="./aboutmepg.png"
-                  alt="Profile picture"
-                />
-              </div>
+                
           </div>
           
             
-            
-
         </section>
     );
 
