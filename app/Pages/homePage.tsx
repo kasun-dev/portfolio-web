@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Animate from "../Components/softwareEngineerWording";
 
 const HomePage = () => {
 
@@ -11,7 +12,8 @@ const HomePage = () => {
               <div className="flex flex-col justify-center ml-20">
                 <h1 className="text-yellow-300 text-xl">Hello Welcome,</h1>
                 <h1 className="text-white text-5xl font-bold">I`m Kasun Jayamaha</h1>
-                <h1 className="text-white text-xs text-center ml-20 pl-20">software Engineer</h1>
+                {/* Animating text */}
+                <Animate/>
                 <p className="text-yellow-300 text-m mt-2">
                   with a passion for solving problems through code. I specialize
                 </p>
