@@ -119,21 +119,31 @@ const NavBar = () => {
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 w-full bg-black text-white flex flex-col items-start p-5 gap-4 md:hidden">
           <Link href="#home" onClick={() => setIsMobileMenuOpen(false)}>
-            home
+            <div className="ml-20 active:text-yellow-300">
+              home
+            </div>
           </Link>
           <Link href="#about" onClick={() => setIsMobileMenuOpen(false)}>
-            about
+            <div className="ml-20 active:text-yellow-300">
+              about
+            </div>
           </Link>
           <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-            contact
+            <div className="ml-20 active:text-yellow-300">
+              contact
+            </div>
           </Link>
           <Link href="#projects" onClick={() => setIsMobileMenuOpen(false)}>
-            projects
+            <div className="ml-20 active:text-yellow-300">
+              projects
+            </div>
           </Link>
           <Link href="#skills" onClick={() => setIsMobileMenuOpen(false)}>
-            skills
+            <div className="ml-20 active:text-yellow-300">
+              skills
+            </div>
           </Link>
-          <button onClick={handleDownloadCV}>download CV</button>
+          <button onClick={handleDownloadCV} className="ml-20 active:text-yellow-300 ">downloads</button>
         </div>
       )}
 
