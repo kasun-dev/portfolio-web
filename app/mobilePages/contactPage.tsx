@@ -43,8 +43,6 @@ const McontactPage = () => {
               </div>
 
               </div>
-
-              <Mfooter/> 
               </div>
         </section>
     );
