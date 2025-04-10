@@ -143,7 +143,7 @@ const NavBar = () => {
               skills
             </div>
           </Link>
-          <button onClick={handleDownloadCV} className="ml-20 active:text-yellow-300 ">downloads</button>
+          <button onClick={handleDownloadCV} className="ml-20 text-yellow-300 ">downloads</button>
         </div>
       )}
 
