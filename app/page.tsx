@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
 import NavBar from "./Components/NavBar";
-import HomePage from "./Components/homePage";
-import AboutPage from "./Components/aboutPage";
+import HomePage from "./Pages/homePage";
+import AboutPage from "./Pages/aboutPage";
 import Footer from "./Components/footer";
-import ContactPage from "./Components/contactPage";
-import ProjectPage from "./Components/projectsPage";
-import SkillsPage from "./Components/skillPage";
+import ContactPage from "./Pages/contactPage";
+import ProjectPage from "./Pages/projectsPage";
+import SkillsPage from "./Pages/skillPage";
 
 
 function Page() {

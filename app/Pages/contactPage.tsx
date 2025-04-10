@@ -1,5 +1,5 @@
 import react from 'react';
-import ContactForm from './InquiryForm';
+import ContactForm from '../Components/InquiryForm';
 import Link from 'next/link';
 import Image from 'next/image';
 
