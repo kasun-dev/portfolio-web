@@ -1,11 +1,17 @@
 import Link from "next/link";
 import React from "react";
 import Animate from "../Components/softwareEngineerWording";
+import { motion } from "framer-motion";
 
 const HomePage = () => {
 
     return (
-        <section id="home" className="flex h-screen items-center">
+        <motion.section id="home" 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+
+        className="flex h-screen items-center">
             {/* Two-column layout */}
             <div className="grid grid-cols-2 w-full px-10">
               {/* Column 1 - Welcome Note */}
@@ -48,7 +54,7 @@ const HomePage = () => {
                 />
               </div>
             </div>
-          </section>
+          </motion.section>
     );
 }   
 export default HomePage;
