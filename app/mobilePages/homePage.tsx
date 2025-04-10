@@ -10,7 +10,7 @@ const MHomePage = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-        className="flex h-screen md:hidden w-full py-20">
+        className="flex h-screen w-full py-20">
               <div className=" mx-auto w-full px-5 mt-5">
                 <h1 className="text-yellow-300 text-l">Hello Welcome,</h1>
                 <h1 className="text-white text-3xl font-bold">I`m Kasun Jayamaha</h1>

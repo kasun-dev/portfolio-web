@@ -8,7 +8,7 @@ const McontactPage = () => {
 
     return (
 
-        <section id="contact" className="flex h-screen items-center md:hidden mt-2 pb-10 mb-10">
+        <section id="contact" className="flex h-screen items-center mt-2 pb-10 mb-10">
            <div className='mx-auto'>
                 <div className="flex justify-center items-center ">
               <div className="relative w-full h-screen">

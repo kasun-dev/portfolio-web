@@ -5,7 +5,7 @@ import Link from "next/link";
 const ProjectPage = () => {
 
     return (
-        <section id="projects" className="flex h-screen justify-self-center items-center hidden md:flex">
+        <section id="projects" className="flex h-screen justify-self-center items-center ">
                       <div className="flex flex-col ">
                         <h1 className="text-white text-3xl font-bold mb-10 ml-10">Project's Highlights</h1>
         

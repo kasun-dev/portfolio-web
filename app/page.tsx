@@ -1,12 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from 'next/image';
-import Link from 'next/link';
 import NavBar from "./Components/NavBar";
 import HomePage from "./Pages/homePage";
 import AboutPage from "./Pages/aboutPage";
 import MFooter from "./Components/footerM";
-import Footer from "./Components/footer";
 import ContactPage from "./Pages/contactPage";
 import ProjectPage from "./Pages/projectsPage";
 import SkillsPage from "./Pages/skillPage";
@@ -14,39 +11,47 @@ import MHomePage from "./mobilePages/homePage";
 import MAboutPage from "./mobilePages/aboutPage";
 import MContactPage from "./mobilePages/contactPage";
 
-
 function Page() {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor 
+    const isMobileDevice = /android|iphone|ipad|ipod/i.test(userAgent.toLowerCase());
+    setIsMobile(isMobileDevice);
+  }, []);
+
+  if (isMobile === null) {
+    return <div className="text-center p-4">Loading...</div>;
+  }
 
   return (
     <div>
-        {/*nav bar*/}
-        <NavBar/>
+      {/* Navbar */}
+      <NavBar />
 
-        {/*body content of the web*/}
-        <div>
+      {/* Hero Section */}
 
-          {/*home page*/}
-          <HomePage/>
-          <MHomePage/>
+      {/* Body */}
+      <div>
+        {isMobile ? (
+          <>
+            <MHomePage />
+            <MAboutPage />
+            <MContactPage />
+          </>
+        ) : (
+          <>
+            <HomePage />
+            <AboutPage />
+            <ProjectPage />
+            <SkillsPage />
+            <ContactPage />
+          </>
+        )}
+      </div>
 
-          {/*about section*/}
-          <AboutPage/>
-          <MAboutPage/>
-
-          {/*projects page start here*/}
-          <ProjectPage/>
-
-          {/*skills pages starts here*/}
-          <SkillsPage/>
-
-          {/*contact page*/}
-          <ContactPage/>
-          <MContactPage/>
-          
-          {/*footer is here*/}
-          <Footer/>
-          
-        </div>
+      {/* Footer */}
+      <MFooter />
     </div>
   );
 }

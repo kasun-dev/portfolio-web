@@ -6,7 +6,7 @@ import { handleDownloadCV } from "../UtilityFunctions/cvBtnUtil";
 const AboutPage = () => {
 
     return (
-        <section id="about" className="flex h-screen items-center hidden md:flex">
+        <section id="about" className="flex h-screen items-center ">
             {/* Two-column layout */}
             <div className="grid grid-cols-2 w-full px-10">
               {/* Column 1 - Welcome Note */}

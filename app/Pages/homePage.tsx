@@ -11,7 +11,7 @@ const HomePage = () => {
         animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
 
-        className="flex h-screen items-center hidden md:flex">
+        className="flex h-screen items-center ">
             {/* Two-column layout */}
             <div className="grid grid-cols-2 w-full px-10">
               {/* Column 1 - Welcome Note */}

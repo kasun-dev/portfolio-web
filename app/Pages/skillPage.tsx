@@ -4,7 +4,7 @@ import Image from "next/image";
 const SkillsPage = () => {
 
     return (
-        <section id="skills" className="flex h-screen items-center hidden md:flex">
+        <section id="skills" className="flex h-screen items-center ">
             {/* Two-column layout */}
             <div className="grid grid-cols-2 w-full px-10">
               {/* Column 1 - Welcome Note */}

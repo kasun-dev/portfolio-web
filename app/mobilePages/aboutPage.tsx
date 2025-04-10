@@ -7,7 +7,7 @@ import { handleDownloadCV } from "../UtilityFunctions/cvBtnUtil";
 const MAboutPage = () => {
 
     return (
-        <section id="about" className="flex h-screen md:hidden pt-16">
+        <section id="about" className="flex h-screen pt-16">
           <div className=" w-full px-5 mt-5"
           >
               <h1 className="text-white text-2xl text-bold">About Kasun Jayamaha,</h1>
