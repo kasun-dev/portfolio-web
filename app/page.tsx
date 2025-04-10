@@ -11,7 +11,6 @@ import MHomePage from "./mobilePages/homePage";
 import MAboutPage from "./mobilePages/aboutPage";
 import MContactPage from "./mobilePages/contactPage";
 import MSkillsPage from "./mobilePages/skillPage";
-import MProjectPage from "./mobilePages/projectsPage";
 
 function Page() {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
