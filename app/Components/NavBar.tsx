@@ -111,7 +111,7 @@ const NavBar = () => {
       {/* Hamburger Menu Icon - Mobile only */}
       <div className="md:hidden flex justify-end w-full">
         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          <Image src="/hamburger-icon.png" width={23} height={23} alt="menu" />
+          <Image src="./hamburger-icon.png" width={23} height={23} alt="menu" />
         </button>
       </div>
 
