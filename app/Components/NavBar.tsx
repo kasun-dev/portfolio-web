@@ -7,6 +7,7 @@ import { handleDownloadCV } from "../UtilityFunctions/cvBtnUtil";
 
 const NavBar = () => {
   const [activeSection, setActiveSection] = useState<string>("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,7 +41,7 @@ const NavBar = () => {
       <Image src="./logo.png" width={55} height={55} alt="logo image" />
 
       {/* Nav bar */}
-      <nav className="flex justify-center w-full text-sm">
+      <nav className="hidden md:flex justify-center w-full text-sm">
         <Link
           href="#home"
           className={`mx-8 ${
@@ -106,8 +107,37 @@ const NavBar = () => {
             </Link>
           </div>
         </div>
-      </nav>
-    </header>
+      </nav> 
+      {/* Hamburger Menu Icon - Mobile only */}
+      <div className="md:hidden flex justify-end w-full">
+        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <Image src="/hamburger-icon.png" width={23} height={23} alt="menu" />
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-full left-0 w-full bg-black text-white flex flex-col items-start p-5 gap-4 md:hidden">
+          <Link href="#home" onClick={() => setIsMobileMenuOpen(false)}>
+            home
+          </Link>
+          <Link href="#about" onClick={() => setIsMobileMenuOpen(false)}>
+            about
+          </Link>
+          <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+            contact
+          </Link>
+          <Link href="#projects" onClick={() => setIsMobileMenuOpen(false)}>
+            projects
+          </Link>
+          <Link href="#skills" onClick={() => setIsMobileMenuOpen(false)}>
+            skills
+          </Link>
+          <button onClick={handleDownloadCV}>download CV</button>
+        </div>
+      )}
+
+    </header>    
   );
 };
 
