@@ -99,6 +99,12 @@ const NavBar = () => {
               skills
             </Link>
             <Link
+              href="https://medium.com/@ks2005755"
+              className="block px-4 py-1 hover:bg-yellow-300 hover:text-black"
+            >
+              blog
+            </Link>
+            <Link
               href=""
               className="block px-4 py-1 hover:bg-yellow-300 hover:text-black"
               onClick={handleDownloadCV}
@@ -141,6 +147,11 @@ const NavBar = () => {
           <Link href="/#skills" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="ml-20 active:text-yellow-300">
               skills
+            </div>
+          </Link>
+          <Link href="https://medium.com/@ks2005755" onClick={() => setIsMobileMenuOpen(false)}>
+            <div className="ml-20 active:text-yellow-300">
+              blog
             </div>
           </Link>
           <button onClick={handleDownloadCV} className="ml-20 text-yellow-300 ">downloads</button>
