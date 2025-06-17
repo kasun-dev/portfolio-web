@@ -45,7 +45,7 @@ function Page() {
           <>
             <MHomePage />
             <MAboutPage />
-
+            
             <MSkillsPage />
             <MContactPage />
           </>
