@@ -8,7 +8,7 @@ import { handleDownloadCV } from "../UtilityFunctions/cvBtnUtil";
 const NavBar = () => {
   const [activeSection, setActiveSection] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  use
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll("section");
