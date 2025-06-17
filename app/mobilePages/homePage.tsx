@@ -10,8 +10,8 @@ const MHomePage = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-        className="flex h-screen w-full py-20">
-              <div className=" mx-auto w-full px-5 mt-5">
+        className="flex h-screen w-full">
+              <div className=" mx-auto w-full px-5">
                 {/* Profile Image on top */}
                 <div className="flex justify-center">
                   <img
