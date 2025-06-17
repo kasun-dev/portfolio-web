@@ -99,7 +99,7 @@ const NavBar = () => {
               skills
             </Link>
             <Link
-              href="https://medium.com/@ks2005755/iot-internet-of-things-introduction-a0197810f923"
+              href="https://medium.com/@ks2005755"
               className="block px-4 py-1 hover:bg-yellow-300 hover:text-black"
             >
               blogs
@@ -149,7 +149,7 @@ const NavBar = () => {
               skills
             </div>
           </Link>
-          <Link href="https://medium.com/@ks2005755/iot-internet-of-things-introduction-a0197810f923" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="https://medium.com/@ks2005755" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="ml-20 active:text-yellow-300">
               blogs
             </div>
