@@ -43,7 +43,7 @@ const NavBar = () => {
       {/* Nav bar */}
       <nav className="hidden md:flex justify-center w-full text-sm">
         <Link
-          href="#home"
+          href="./#home"
           className={`mx-8 ${
             activeSection === "home"
               ? "text-yellow-300"
@@ -53,7 +53,7 @@ const NavBar = () => {
           home
         </Link>
         <Link
-          href="#about"
+          href="./#about"
           className={`mx-8 ${
             activeSection === "about"
               ? "text-yellow-300"
@@ -63,7 +63,7 @@ const NavBar = () => {
           about
         </Link>
         <Link
-          href="#contact"
+          href="./#contact"
           className={`mx-8 ${
             activeSection === "contact"
               ? "text-yellow-300"
@@ -87,13 +87,13 @@ const NavBar = () => {
           {/* Dropdown menu */}
           <div className="absolute left-0 w-32 bg-black text-white text-sm rounded-md hidden group-hover:block border border-white">
             <Link
-              href="#projects"
+              href="projects"
               className="block px-4 py-1 hover:bg-yellow-300 hover:text-black "
             >
               projects
             </Link>
             <Link
-              href="#skills"
+              href="./#skills"
               className="block px-4 py-1 hover:bg-yellow-300 hover:text-black"
             >
               skills
@@ -124,27 +124,27 @@ const NavBar = () => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 w-full bg-black text-white flex flex-col items-start p-5 gap-4 md:hidden">
-          <Link href="#home" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="./#home" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="ml-20 active:text-yellow-300">
               home
             </div>
           </Link>
-          <Link href="#about" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="./#about" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="ml-20 active:text-yellow-300">
               about
             </div>
           </Link>
-          <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="./#contact" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="ml-20 active:text-yellow-300">
               contact
             </div>
           </Link>
-          <Link href="#projects" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="projects" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="ml-20 active:text-yellow-300">
               projects
             </div>
           </Link>
-          <Link href="#skills" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="./#skills" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="ml-20 active:text-yellow-300">
               skills
             </div>
