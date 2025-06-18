@@ -1,11 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NavBar from "./Components/NavBar";
 import HomePage from "./Pages/homePage";
 import AboutPage from "./Pages/aboutPage";
 import MFooter from "./Components/footerM";
 import ContactPage from "./Pages/contactPage";
-import ProjectPage from "./Pages/projectsPage";
 import SkillsPage from "./Pages/skillPage";
 import MHomePage from "./mobilePages/homePage";
 import MAboutPage from "./mobilePages/aboutPage";
@@ -35,7 +33,6 @@ function Page() {
   return (
     <div>
       {/* Navbar */}
-      <NavBar />
 
       {/* Hero Section */}
 
@@ -44,8 +41,7 @@ function Page() {
         {isMobile ? (
           <>
             <MHomePage />
-            <MAboutPage />
-            
+            <MAboutPage />     
             <MSkillsPage />
             <MContactPage />
           </>
@@ -53,7 +49,6 @@ function Page() {
           <>
             <HomePage />
             <AboutPage />
-            <ProjectPage />
             <SkillsPage />
             <ContactPage />
           </>
