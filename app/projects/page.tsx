@@ -7,6 +7,16 @@ const ProjectPage = () => {
 
   const projects = [
     {
+      imgSrc: "./esp32firebase.jpg",
+      alt: "Esp32 smart home project",
+      title: "ESP32 Based Smart Home test project",
+      description: "A smart home project using ESP32 and Firebase for real-time control of home appliances using a relay module.",
+      repo: "https://github.com/kasun-dev/smartHomePro-flutterApp",
+      link: "",
+      type: "IoT",
+      technologies: ["ESP32", "Firebase", "Flutter", "Arduino", "Relay Module"],
+    },
+    {
       imgSrc: "./food-delivery.png",
       alt: "Food Delivery App",
       title: "Food Delivery Platform",
