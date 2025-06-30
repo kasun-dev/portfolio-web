@@ -28,9 +28,9 @@ const contactPage = () => {
                       />
                          </td>
                       <td>
-                        <Link href={'https://mail.google.com/mail/?view=cm&fs=1&to=ks2005755@gmail.com&su=Contact%20through%20the%20portfolio&body=Add%20your%20concerns'}
+                        <Link href={'https://mail.google.com/mail/?view=cm&fs=1&to=kasunjayamaha.dev@gmail.com&su=Contact%20through%20the%20portfolio&body=Add%20your%20concerns'}
                           className='hover:bg-yellow-300 hover:text-black px-2 py-1 rounded-md'>
-                          ks2005755@gmail.com
+                          kasunjayamaha.dev@gmail.com
                         </Link>
                       </td>
                     </tr>
