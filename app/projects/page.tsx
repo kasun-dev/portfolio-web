@@ -7,6 +7,16 @@ const ProjectPage = () => {
 
   const projects = [
     {
+      imgSrc: "./thoughtpad.jpg",
+      alt: "ThoughtPAD project",
+      title: "ThoughtPAD post writing project with subscription",
+      description: "A post-sharing platform where users can create, edit, search posts, and manage subscriptions through an integrated payment system.",
+      repo: "",
+      link: "",
+      type: "Fullstack",
+      technologies: ["Nuxt.js", "NestJS", "PostgreSQL", "Typesense", "Zod", "Stripe", "Cloudinary"]
+    },
+    {
       imgSrc: "./esp32firebase.jpg",
       alt: "Esp32 smart home project",
       title: "ESP32 Based Smart Home test project",
