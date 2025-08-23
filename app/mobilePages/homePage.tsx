@@ -15,7 +15,7 @@ const MHomePage = () => {
                 {/* Profile Image on top */}
                 <div className="flex justify-center">
                   <img
-                    src="./profilepic.webp"
+                    src="./profilepicture.webp"
                     alt="Profile picture"
                     className="w-40  object-cover"
                   />
