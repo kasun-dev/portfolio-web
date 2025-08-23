@@ -48,7 +48,7 @@ const HomePage = () => {
               {/* Column 2 - Profile Picture */}
               <div className="flex justify-center items-center ">
                 <img
-                  src="./profilepic.webp"
+                  src="./profilepicture.webp"
                   alt="Profile picture"
                   className="transition-transform duration-300 ease-in-out transform hover:scale-105 mt-20"
                 />
