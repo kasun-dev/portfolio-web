@@ -48,7 +48,7 @@ const HomePage = () => {
               {/* Column 2 - Profile Picture */}
               <div className="flex justify-center items-center ">
                 <img
-                  src="./profilepicture.webp"
+                  src="https://res.cloudinary.com/dks7sqgjd/image/upload/v1756957072/profilepic_zetya6.webp"
                   alt="Profile picture"
                   className="transition-transform duration-300 ease-in-out transform hover:scale-105 mt-20"
                 />
