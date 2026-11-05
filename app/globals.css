@@ -49,8 +49,11 @@ body {
   border-radius: 4px;
 }
 
+/* The fixed header covers the first 4rem of a section when you jump to it, and
+   the section's top padding clears it, so headings land a consistent distance
+   below the header. */
 section[id] {
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: 0;
 }
 
 /* Pointy-top hexagon, the shape from the portrait artwork */

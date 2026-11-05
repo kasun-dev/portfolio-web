@@ -13,7 +13,7 @@ export default function Section({ id, title, intro, children }: Props) {
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="border-t border-line py-20 sm:py-28"
+      className="border-t border-line pb-20 pt-24 sm:pb-24 sm:pt-28"
     >
       <div className={container}>
         <header className="max-w-2xl">
