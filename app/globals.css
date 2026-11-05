@@ -2,26 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Colour tokens as RGB triplets so Tailwind can apply opacity (bg-bg/80 etc.) */
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --bg: 244 245 247; /* chalk */
+  --surface: 255 255 255;
+  --fg: 16 18 24; /* ink */
+  --muted: 88 94 110;
+  --line: 218 221 229;
+  --accent: 150 98 0; /* amber, dark enough for text on chalk */
+  --brand: 255 210 63; /* hexagon yellow, used as a fill */
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 16 18 24; /* ink */
+  --surface: 27 30 39; /* graphite */
+  --fg: 244 245 247;
+  --muted: 148 153 168; /* steel */
+  --line: 42 46 58;
+  --accent: 255 210 63;
+  --brand: 255 210 63;
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
+::selection {
+  background: rgb(var(--brand));
+  color: #101218;
+}
 
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+/* Pointy-top hexagon, the shape from the portrait artwork */
+.hex {
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+/* The single page-load sequence in the hero */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+.caret {
+  animation: caret 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
