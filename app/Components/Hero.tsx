@@ -13,97 +13,22 @@ const social = [
   { label: "Email", href: `mailto:${SITE.email}`, Icon: MailIcon },
 ];
 
-/* ------------------------------------------------------------------ */
-/* Portrait artwork: a honeycomb of yellow and white hexagons behind    */
-/* the photo, and a rectangular platform under his feet. All drawn in   */
-/* a 400 x 500 box that matches the panel's 4:5 shape.                  */
-/* ------------------------------------------------------------------ */
-
-const YELLOW = "#ffd23f";
-const R = 40; // hexagon radius
-const HEX_W = Math.sqrt(3) * R; // pointy-top hexagon width
-const GAP = 3; // visual gap between neighbouring cells
-
-/** Points for a pointy-top hexagon. */
-function hexPoints(cx: number, cy: number, r: number) {
-  return Array.from({ length: 6 }, (_, i) => {
-    const a = (Math.PI / 180) * (60 * i - 90);
-    return `${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`;
-  }).join(" ");
-}
-
-/**
- * One character per cell, left to right:
- *   Y yellow solid   y yellow outline   W white outline
- *   w white solid    G dark solid       . empty
- * Even rows are offset by half a cell, which is what makes it a honeycomb.
- * Cells directly behind his head stay outline-only so the face reads clearly.
- */
-const ROWS: { y: number; wide: boolean; cells: string }[] = [
-  { y: 95, wide: true, cells: "WGWYW" },
-  { y: 155, wide: false, cells: "YWWG" },
-  { y: 215, wide: true, cells: "GWGWY" },
-  { y: 275, wide: false, cells: "WGGW" },
-  { y: 335, wide: true, cells: "YWGWw" },
-  { y: 395, wide: false, cells: "y..W" },
-];
-
-function Honeycomb() {
-  return (
-    <g strokeLinejoin="round">
-      {ROWS.flatMap(({ y, wide, cells }) =>
-        cells.split("").map((c, i) => {
-          if (c === ".") return null;
-          const x = wide ? 200 + (i - 2) * HEX_W : 200 + (i - 1.5) * HEX_W;
-          const points = hexPoints(x, y, R - GAP);
-          const key = `${x.toFixed(0)}-${y}`;
-          switch (c) {
-            case "Y":
-              return <polygon key={key} points={points} fill={YELLOW} />;
-            case "y":
-              return <polygon key={key} points={points} fill="none" stroke={YELLOW} strokeWidth="2.5" />;
-            case "W":
-              return <polygon key={key} points={points} fill="none" stroke="#fff" strokeOpacity="0.9" strokeWidth="1.75" />;
-            case "w":
-              return <polygon key={key} points={points} fill="#fff" fillOpacity="0.95" />;
-            default:
-              return <polygon key={key} points={points} fill="#232632" stroke="#fff" strokeOpacity="0.12" />;
-          }
-        })
-      )}
-    </g>
-  );
-}
-
 function Portrait() {
   return (
     <div
-      className="rise relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-[2rem] bg-[#14161d] ring-1 ring-line lg:mx-0 lg:ml-auto lg:h-[var(--h)] lg:w-[calc(var(--h)*4/5)] lg:max-w-none"
+      className="rise relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#1b1e28] to-[#12141b] ring-1 ring-line lg:mx-0 lg:ml-auto lg:h-[var(--h)] lg:w-[calc(var(--h)*4/5)] lg:max-w-none"
       // The panel is sized from the viewport height so it always fits on screen.
       style={{ ...delay(0.2), "--h": "min(70svh, 640px)" } as CSSProperties}
     >
-      <svg aria-hidden viewBox="0 0 400 500" className="absolute inset-0 h-full w-full">
-        <defs>
-          <radialGradient id="glow" cx="50%" cy="42%" r="60%">
-            <stop offset="0%" stopColor={YELLOW} stopOpacity="0.16" />
-            <stop offset="100%" stopColor={YELLOW} stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <rect width="400" height="500" fill="url(#glow)" />
-        <Honeycomb />
-        {/* Rectangular platform: a solid slab he stands on, and a lighter step below it */}
-        <rect x="28" y="452" width="344" height="22" rx="4" fill={YELLOW} />
-        <rect x="64" y="481" width="272" height="13" rx="3" fill="none" stroke="#fff" strokeOpacity="0.9" strokeWidth="1.75" />
-      </svg>
+      {/* Half-body cutout with its white outline baked in; the cut edge sits on the panel's bottom edge. */}
       <img
         src="./img/kasun.webp"
         alt="Portrait of Kasun Jayamaha in a suit and tie"
-        width={530}
+        width={994}
         height={1300}
         fetchPriority="high"
         decoding="async"
-        // 87% of the panel tall, with his feet planted on the middle of the slab.
-        className="absolute bottom-[7.4%] left-1/2 h-[87%] w-auto max-w-none -translate-x-1/2"
+        className="absolute bottom-0 left-1/2 h-[92%] w-auto max-w-none -translate-x-1/2"
       />
     </div>
   );
@@ -117,7 +42,7 @@ export default function Hero() {
       id="home"
       className="relative flex min-h-screen min-h-svh items-center overflow-hidden pb-12 pt-28"
     >
-      {/* Faint honeycomb, echoing the hexagons around the portrait */}
+      {/* Faint honeycomb texture across the page background */}
       <svg
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full text-fg opacity-[0.07] [mask-image:radial-gradient(ellipse_70%_60%_at_75%_40%,#000,transparent)]"
