@@ -1,4 +1,4 @@
-import { ALSO_USED, SKILLS, type SkillGroup } from "../data/content";
+import { ALSO_USED, SKILLS, SKILL_EXTRAS, type SkillGroup } from "../data/content";
 import Honeycomb from "./Honeycomb";
 import Section from "./Section";
 
@@ -9,7 +9,7 @@ export default function Skills() {
     <Section
       id="skills"
       title="Skills"
-      intro="The tools I reach for most, from firmware to front end."
+      intro="The tools I reach for most, from firmware to cloud."
     >
       <div className="grid items-center gap-14 lg:grid-cols-2">
         <Honeycomb />
@@ -20,9 +20,10 @@ export default function Skills() {
               <div key={group} className="border-t border-line pt-3">
                 <dt className="font-medium">{group}</dt>
                 <dd className="mt-1 text-muted">
-                  {SKILLS.filter((s) => s.group === group)
-                    .map((s) => s.name)
-                    .join(", ")}
+                  {[
+                    ...SKILLS.filter((s) => s.group === group).map((s) => s.name),
+                    ...(SKILL_EXTRAS.find((e) => e.group === group)?.items ?? []),
+                  ].join(", ")}
                 </dd>
               </div>
             ))}

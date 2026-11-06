@@ -3,10 +3,10 @@ import { btnOutline } from "../data/ui";
 import Section from "./Section";
 
 const facts = [
-  { term: "Studying at", detail: "Sri Lanka Institute of Information Technology (SLIIT)" },
+  { term: "Working at", detail: `${SITE.company}, as an Associate (remote)` },
+  { term: "Graduated from", detail: "Sri Lanka Institute of Information Technology (SLIIT), Sep 2026" },
   { term: "Based in", detail: SITE.location },
-  { term: "Main stack", detail: "React, Next.js, NestJS, MongoDB, PostgreSQL" },
-  { term: "Hardware", detail: "ESP32 and Arduino" },
+  { term: "Main stack", detail: "React, Next.js, NestJS, PostgreSQL, AWS, ESP32" },
 ];
 
 export default function About() {
@@ -27,15 +27,15 @@ export default function About() {
         <div>
           <div className="max-w-xl space-y-4 text-lg leading-relaxed text-muted">
             <p>
-              I&apos;m a software engineering student who likes projects that
-              reach past the screen: an app that switches real appliances
-              through an ESP32, or a delivery platform made of services that
-              talk to each other.
+              I&apos;m a software engineer who graduated from SLIIT in September
+              2026. After a year as an intern at {SITE.company}, I now work
+              there full-time as an Associate, remotely from {SITE.location.split(",")[0]}.
             </p>
             <p>
               Most of my work is full-stack TypeScript with React, Next.js and
-              NestJS. I also write Flutter and Kotlin for mobile, and C++ for
-              ESP32 firmware.
+              NestJS, backed by PostgreSQL, Docker and AWS. Outside work I build
+              things that reach past the screen, like an ESP32 controller that
+              senses engine RPM and drives a power valve.
             </p>
             <p>
               Away from the keyboard I shoot mobile photography as{" "}

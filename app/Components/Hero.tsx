@@ -96,9 +96,9 @@ export default function Hero() {
             className="rise mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted sm:text-lg"
             style={delay(0.24)}
           >
-            I study at SLIIT in {SITE.location.split(",")[0]} and build web
-            platforms, mobile apps and connected devices, from the database to
-            the circuit board.
+            I&apos;m a SLIIT graduate based in {SITE.location.split(",")[0]}, working
+            remotely at {SITE.company}. I build web platforms, cloud backends and
+            connected devices, from the database to the circuit board.
           </p>
 
           <div className="rise mt-8 flex flex-wrap items-center gap-3" style={delay(0.32)}>
