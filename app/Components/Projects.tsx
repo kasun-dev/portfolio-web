@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   LINKS,
@@ -11,6 +11,7 @@ import {
 } from "../data/content";
 import { btnOutline } from "../data/ui";
 import { ArrowUpRightIcon } from "./Icons";
+import ProjectDrawer from "./ProjectDrawer";
 import Section from "./Section";
 
 const INITIAL = 6;
@@ -41,7 +42,13 @@ function Cover({ project }: { project: Project }) {
   );
 }
 
-function Card({ project }: { project: Project }) {
+function Card({
+  project,
+  onOpen,
+}: {
+  project: Project;
+  onOpen: (p: Project, trigger: HTMLElement) => void;
+}) {
   const links = [
     { label: "Code", href: project.repo },
     { label: "Live demo", href: project.live },
@@ -73,17 +80,11 @@ function Card({ project }: { project: Project }) {
             {project.status}
           </p>
         )}
-        <p className="mt-2 text-[15px] leading-relaxed text-muted">
+        <p className="mt-2 line-clamp-3 text-[15px] leading-relaxed text-muted">
           {project.description}
         </p>
-        {project.ai && (
-          <div className="mt-4 border-l-2 border-brand pl-3">
-            <p className="text-sm font-medium">How Gemini helps</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted">{project.ai}</p>
-          </div>
-        )}
         <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Technologies">
-          {project.tech.map((t) => (
+          {project.tech.slice(0, 4).map((t) => (
             <li
               key={t}
               className="rounded-md border border-line bg-bg px-2 py-0.5 text-xs text-muted"
@@ -91,9 +92,21 @@ function Card({ project }: { project: Project }) {
               {t}
             </li>
           ))}
+          {project.tech.length > 4 && (
+            <li className="px-1 py-0.5 text-xs text-muted">+{project.tech.length - 4}</li>
+          )}
         </ul>
-        {links.length > 0 && (
-          <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-5">
+        <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-5">
+          <button
+            type="button"
+            onClick={(e) => onOpen(project, e.currentTarget)}
+            aria-label={`More info about ${project.title}`}
+            className="rounded-full border border-line bg-bg px-4 py-1.5 text-sm font-semibold transition-colors hover:border-fg/40"
+          >
+            More info
+          </button>
+          {links.length > 0 && (
+            <>
             {links.map((l) => (
               <a
                 key={l.label}
@@ -107,8 +120,9 @@ function Card({ project }: { project: Project }) {
                 <ArrowUpRightIcon />
               </a>
             ))}
-          </div>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </motion.li>
   );
@@ -117,6 +131,17 @@ function Card({ project }: { project: Project }) {
 export default function Projects() {
   const [type, setType] = useState<"All" | ProjectType>("All");
   const [showAll, setShowAll] = useState(false);
+  const [selected, setSelected] = useState<Project | null>(null);
+  const opener = useRef<HTMLElement | null>(null);
+
+  const open = (p: Project, trigger: HTMLElement) => {
+    opener.current = trigger;
+    setSelected(p);
+  };
+  const close = useCallback(() => {
+    setSelected(null);
+    opener.current?.focus();
+  }, []);
 
   const matching =
     type === "All" ? PROJECTS : PROJECTS.filter((p) => p.type === type);
@@ -151,7 +176,7 @@ export default function Projects() {
       <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence initial={false} mode="popLayout">
           {visible.map((p) => (
-            <Card key={p.id} project={p} />
+            <Card key={p.id} project={p} onOpen={open} />
           ))}
         </AnimatePresence>
       </ul>
@@ -177,6 +202,9 @@ export default function Projects() {
           <ArrowUpRightIcon />
         </a>
       </div>
+      <AnimatePresence>
+        {selected && <ProjectDrawer key={selected.id} project={selected} onClose={close} />}
+      </AnimatePresence>
     </Section>
   );
 }
