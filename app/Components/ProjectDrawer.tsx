@@ -54,7 +54,8 @@ export default function ProjectDrawer({
 
   const links = [
     { label: "Live site", href: project.live },
-    { label: "Code", href: project.repo },
+    { label: "LinkedIn post", href: project.post },
+    { label: project.repoLabel ?? "Code", href: project.repo },
     { label: "Design", href: project.design },
   ].filter((l): l is { label: string; href: string } => Boolean(l.href));
 
@@ -133,6 +134,15 @@ export default function ProjectDrawer({
                 <h4 className="font-medium">How Gemini helps</h4>
                 <p className="mt-1.5 text-pretty text-[15px] leading-relaxed text-muted">
                   {project.ai}
+                </p>
+              </div>
+            )}
+
+            {project.learned && (
+              <div>
+                <h4 className="font-medium">What I learned</h4>
+                <p className="mt-1.5 text-pretty text-[15px] leading-relaxed text-muted">
+                  {project.learned}
                 </p>
               </div>
             )}
