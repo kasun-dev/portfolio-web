@@ -67,9 +67,21 @@ function Card({ project }: { project: Project }) {
             {project.type}
           </span>
         </div>
+        {project.status && (
+          <p className="mt-2 inline-flex items-center gap-2 text-sm text-muted">
+            <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden />
+            {project.status}
+          </p>
+        )}
         <p className="mt-2 text-[15px] leading-relaxed text-muted">
           {project.description}
         </p>
+        {project.ai && (
+          <div className="mt-4 border-l-2 border-brand pl-3">
+            <p className="text-sm font-medium">How Gemini helps</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted">{project.ai}</p>
+          </div>
+        )}
         <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Technologies">
           {project.tech.map((t) => (
             <li
@@ -116,7 +128,7 @@ export default function Projects() {
     <Section
       id="projects"
       title="Projects"
-      intro="University work, research experiments and personal builds."
+      intro="Products I run and use every day, plus university work and experiments."
     >
       <div role="group" aria-label="Filter projects by type" className="flex flex-wrap gap-2">
         {PROJECT_TYPES.map((t) => (

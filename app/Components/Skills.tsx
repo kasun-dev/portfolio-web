@@ -1,8 +1,10 @@
-import { ALSO_USED, SKILLS, SKILL_EXTRAS, type SkillGroup } from "../data/content";
+import { ALSO_USED, SKILLS, SKILL_EXTRAS } from "../data/content";
 import Honeycomb from "./Honeycomb";
 import Section from "./Section";
 
-const groups = Array.from(new Set(SKILLS.map((s) => s.group))) as SkillGroup[];
+const groups: string[] = Array.from(
+  new Set([...SKILLS.map((s) => s.group as string), ...SKILL_EXTRAS.map((e) => e.group)]),
+);
 
 export default function Skills() {
   return (
