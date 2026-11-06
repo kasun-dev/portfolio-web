@@ -50,8 +50,9 @@ function Card({
   onOpen: (p: Project, trigger: HTMLElement) => void;
 }) {
   const links = [
-    { label: "Code", href: project.repo },
+    { label: project.repoLabel ?? "Code", href: project.repo },
     { label: "Live demo", href: project.live },
+    { label: "LinkedIn post", href: project.post },
     { label: "Design", href: project.design },
   ].filter((l): l is { label: string; href: string } => Boolean(l.href));
 

@@ -157,9 +157,31 @@ export type Project = {
   status?: string;
   /** How the Gemini API is used in this project (shown as a note on the card). */
   ai?: string;
+  /** What the project taught me (shown in the details panel). */
+  learned?: string;
+  /** Link to a write-up, e.g. a LinkedIn post. */
+  post?: string;
+  /** Label for the repo link when it is not plain code. */
+  repoLabel?: string;
 };
 
 export const PROJECTS: Project[] = [
+  {
+    id: "trifusion",
+    title: "AR–AI Guided Maintenance",
+    type: "IoT",
+    featured: true,
+    status: "Deployed at Haycarb PLC",
+    description:
+      "My final-year research project at SLIIT, built with a team of four for Haycarb PLC: AR-guided maintenance with IoT monitoring for industrial machinery. I built the IoT part. ESP32 sensor nodes with ADXL345 vibration sensors send readings to a main node, which publishes them to AWS IoT over secure MQTT. AWS Lambda preprocesses the data into DynamoDB, ready for the team's fault-diagnosis and predictive-maintenance models.",
+    learned:
+      "Designing hardware for failure: nodes that keep sending when a sensor fails, redundant sensors, and Wi-Fi plus GSM paths. I learned ESP-NOW networking between ESP32 nodes, secure MQTT to AWS IoT, and serverless preprocessing on AWS, then checked it on a live factory deployment with over 69,000 records and more than 90% data availability.",
+    tech: ["ESP32", "ADXL345", "ESP-NOW", "MQTT", "AWS IoT Core", "AWS Lambda", "DynamoDB", "SIM800L GSM", "C++"],
+    cover: "trifusion.webp",
+    repo: "https://github.com/kasun-dev/research-web",
+    repoLabel: "Research site",
+    post: "https://www.linkedin.com/posts/kasun-jayamaha-32963829b_iiot-predictivemaintenance-industry40-ugcPost-7486830954276118528-Z0O_/",
+  },
   {
     id: "studio-clicked",
     title: "Studio Click.ed",
@@ -380,7 +402,7 @@ export const TIMELINE = [
   {
     when: "Final year",
     title: "IoT component of a research project",
-    body: "Built the ESP32-based IoT part of a group research project.",
+    body: "Built the ESP32 sensor network and AWS data pipeline for a research project with Haycarb PLC.",
   },
   {
     when: "Year 3",
