@@ -6,15 +6,16 @@
 export const SITE = {
   name: "Kasun Jayamaha",
   role: "Software Engineer",
+  company: "Axceera (Pvt) Ltd",
   // Used for SEO, sitemap and share cards. Change it if you add a custom domain.
   url: "https://kasun-dev.github.io/portfolio-web",
   email: "kasunjayamaha.dev@gmail.com",
   location: "Colombo, Sri Lanka",
   githubUser: "kasun-dev",
   // Shown under the hero heading. Set to "" to hide it.
-  availability: "Open to internships and freelance work",
+  availability: "Associate at Axceera, working remotely",
   description:
-    "Kasun Jayamaha is a software engineering undergraduate from Colombo, Sri Lanka, building full-stack web apps, mobile apps and IoT systems with React, Next.js, NestJS, Flutter and ESP32.",
+    "Kasun Jayamaha is a software engineer from Colombo, Sri Lanka, working remotely as an Associate at Axceera. He builds full-stack web apps, cloud backends and IoT systems with React, Next.js, NestJS, AWS and ESP32.",
 };
 
 export const LINKS = {
@@ -50,63 +51,82 @@ export const NAV = [
 
 export const ROLES = [
   "full-stack web apps",
+  "backend APIs and microservices",
+  "cloud systems on AWS",
   "IoT systems on ESP32",
-  "Flutter and Kotlin apps",
-  "backend APIs",
 ];
 
 export type SkillGroup =
   | "Languages"
   | "Frontend"
+  | "Mobile"
   | "Backend"
   | "Databases"
-  | "Mobile"
-  | "Tools and hardware";
+  | "Cloud and DevOps"
+  | "Tools"
+  | "IoT and embedded";
 
 export type Skill = { name: string; icon: string; group: SkillGroup };
 
-/** Order matters: the honeycomb fills row by row (5, 4, 5, 4, 4). */
+/** Order matters: the honeycomb fills row by row (see SKILL_ROWS). */
 export const SKILLS: Skill[] = [
+  { name: "TypeScript", icon: "typescript.svg", group: "Languages" },
+  { name: "JavaScript", icon: "javascript.svg", group: "Languages" },
+  { name: "Python", icon: "python.svg", group: "Languages" },
+  { name: "Java", icon: "java.svg", group: "Languages" },
   { name: "C", icon: "c.svg", group: "Languages" },
   { name: "C++", icon: "cpp.svg", group: "Languages" },
-  { name: "Java", icon: "java.svg", group: "Languages" },
-  { name: "JavaScript", icon: "javascript.svg", group: "Languages" },
-  { name: "TypeScript", icon: "typescript.svg", group: "Languages" },
   { name: "React", icon: "react.svg", group: "Frontend" },
   { name: "Next.js", icon: "nextjs.webp", group: "Frontend" },
+  { name: "Tailwind CSS", icon: "tailwind.svg", group: "Frontend" },
   { name: "HTML", icon: "html.svg", group: "Frontend" },
   { name: "CSS", icon: "css.svg", group: "Frontend" },
-  { name: "Tailwind CSS", icon: "tailwind.svg", group: "Frontend" },
+  { name: "Flutter", icon: "flutter.svg", group: "Mobile" },
+  { name: "Kotlin", icon: "kotlin.svg", group: "Mobile" },
   { name: "Node.js", icon: "nodejs.svg", group: "Backend" },
   { name: "Express", icon: "express.png", group: "Backend" },
   { name: "NestJS", icon: "nestjs.svg", group: "Backend" },
+  { name: "PostgreSQL", icon: "postgresql.svg", group: "Databases" },
   { name: "MongoDB", icon: "mongodb.svg", group: "Databases" },
-  { name: "MySQL", icon: "mysql.svg", group: "Databases" },
+  { name: "Supabase", icon: "supabase.svg", group: "Databases" },
   { name: "Firebase", icon: "firebase.svg", group: "Databases" },
-  { name: "Flutter", icon: "flutter.svg", group: "Mobile" },
-  { name: "Kotlin", icon: "kotlin.svg", group: "Mobile" },
-  { name: "Figma", icon: "figma.svg", group: "Tools and hardware" },
-  { name: "Postman", icon: "postman.svg", group: "Tools and hardware" },
-  { name: "Arduino", icon: "arduino.svg", group: "Tools and hardware" },
-  { name: "ESP32", icon: "esp32.png", group: "Tools and hardware" },
+  { name: "Prisma", icon: "prisma.svg", group: "Databases" },
+  { name: "Docker", icon: "docker.svg", group: "Cloud and DevOps" },
+  { name: "Kubernetes", icon: "kubernetes.svg", group: "Cloud and DevOps" },
+  { name: "AWS", icon: "aws.svg", group: "Cloud and DevOps" },
+  { name: "Git", icon: "git.svg", group: "Tools" },
+  { name: "Postman", icon: "postman.svg", group: "Tools" },
+  { name: "Swagger UI", icon: "swagger.svg", group: "Tools" },
+  { name: "Figma", icon: "figma.svg", group: "Tools" },
+  { name: "ESP32", icon: "esp32.png", group: "IoT and embedded" },
+  { name: "Arduino", icon: "arduino.svg", group: "IoT and embedded" },
 ];
 
-export const SKILL_ROWS = [5, 4, 5, 4, 4];
+export const SKILL_ROWS = [6, 5, 6, 5, 5, 3];
+
+/** Skills listed as text only (no hexagon), shown with their group. */
+export const SKILL_EXTRAS: { group: string; items: string[] }[] = [
+  { group: "Frontend", items: ["Responsive design systems"] },
+  { group: "Mobile", items: ["React Native"] },
+  { group: "Backend", items: ["REST APIs", "WebSockets", "gRPC"] },
+  { group: "Cloud and DevOps", items: ["Serverless, compute and storage on AWS"] },
+  { group: "Tools", items: ["Custom browser extensions (Swagger PowerAuth)"] },
+  {
+    group: "IoT and embedded",
+    items: ["MQTT", "Serial communication", "RPM sensing", "Controller firmware"],
+  },
+];
 
 export const ALSO_USED = [
-  "PostgreSQL",
-  "Prisma",
-  "Docker",
+  "MySQL",
   "Kafka",
-  "gRPC",
   "Nuxt.js",
   "Stripe",
   "Typesense",
   "JWT",
-  "REST APIs",
   "Java Servlets",
   "Room and MVVM",
-  "Git and GitHub",
+  "GitHub",
 ];
 
 export type ProjectType = "Fullstack" | "Frontend" | "Backend" | "Mobile" | "IoT";
@@ -272,12 +292,27 @@ export const PROJECT_TYPES: ("All" | ProjectType)[] = [
   "IoT",
 ];
 
-/** Newest first. Edit freely: this is a starting point drawn from your repositories. */
+/** Newest first. */
 export const TIMELINE = [
   {
-    when: "Year 4",
-    title: "IoT component of a final-year research project",
-    body: "Building the ESP32-based IoT part of a group research project.",
+    when: "Sep 2026 to now",
+    title: "Associate at Axceera (Pvt) Ltd",
+    body: "Full-time and remote, at the company where I interned.",
+  },
+  {
+    when: "Sep 2026",
+    title: "Graduated from SLIIT",
+    body: "Finished my software engineering degree at the Sri Lanka Institute of Information Technology, Colombo.",
+  },
+  {
+    when: "Aug 2025 to Aug 2026",
+    title: "Software engineering intern at Axceera (Pvt) Ltd",
+    body: "A year working as a software engineer, finishing as I completed my degree.",
+  },
+  {
+    when: "Final year",
+    title: "IoT component of a research project",
+    body: "Built the ESP32-based IoT part of a group research project.",
   },
   {
     when: "Year 3",
@@ -286,12 +321,7 @@ export const TIMELINE = [
   },
   {
     when: "Ongoing",
-    title: "Self-directed hardware experiments",
-    body: "ESP32, Firebase and Flutter experiments, documented with code and circuit diagrams on GitHub.",
-  },
-  {
-    when: "Since the start",
-    title: "Software engineering at SLIIT",
-    body: "Sri Lanka Institute of Information Technology, Colombo.",
+    title: "Hardware experiments",
+    body: "ESP32 controllers and sensors, including a YPVS controller with RPM sensing, documented with code and circuit diagrams on GitHub.",
   },
 ];

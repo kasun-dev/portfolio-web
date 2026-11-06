@@ -31,7 +31,8 @@ export const metadata: Metadata = {
     "React",
     "Next.js",
     "NestJS",
-    "Flutter",
+    "AWS",
+    "Docker",
     "ESP32",
     "IoT",
     "Sri Lanka",
@@ -74,11 +75,12 @@ const jsonLd = {
     addressLocality: "Colombo",
     addressCountry: "LK",
   },
+  worksFor: { "@type": "Organization", name: SITE.company },
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Sri Lanka Institute of Information Technology",
   },
-  knowsAbout: ["Web development", "Mobile development", "Internet of Things"],
+  knowsAbout: ["Web development", "Cloud computing", "Microservices", "Internet of Things"],
   sameAs: [LINKS.github, LINKS.linkedin, LINKS.medium, LINKS.instagram],
 };
 
