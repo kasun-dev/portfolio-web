@@ -16,20 +16,24 @@ const social = [
 function Portrait() {
   return (
     <div
-      className="rise relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#1b1e28] to-[#12141b] ring-1 ring-line lg:mx-0 lg:ml-auto lg:h-[var(--h)] lg:w-[calc(var(--h)*4/5)] lg:max-w-none"
-      // The panel is sized from the viewport height so it always fits on screen.
+      className="rise relative mx-auto aspect-[4/5] w-full max-w-[340px] lg:mx-0 lg:ml-auto lg:h-[var(--h)] lg:w-[calc(var(--h)*4/5)] lg:max-w-none"
+      // The box is sized from the viewport height so the portrait always fits on screen.
       style={{ ...delay(0.2), "--h": "min(70svh, 640px)" } as CSSProperties}
     >
-      {/* Half-body cutout with its white outline baked in; the cut edge sits on the panel's bottom edge. */}
-      <img
-        src="./img/kasun.webp"
-        alt="Portrait of Kasun Jayamaha in a suit and tie"
-        width={994}
-        height={1300}
-        fetchPriority="high"
-        decoding="async"
-        className="absolute bottom-0 left-1/2 h-[92%] w-auto max-w-none -translate-x-1/2"
-      />
+      {/* The soft shadow (light mode only) lives on this wrapper so it follows the
+          faded silhouette. On the image itself the mask would clip it to a box. */}
+      <div className="absolute inset-0 drop-shadow-[0_6px_16px_rgba(16,18,24,0.28)] dark:drop-shadow-none">
+        {/* Half-body cutout with its white outline baked in; the lower edge fades into the page. */}
+        <img
+          src="./img/kasun.webp"
+          alt="Portrait of Kasun Jayamaha in a suit and tie"
+          width={994}
+          height={1300}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 [-webkit-mask-image:linear-gradient(to_bottom,#000_80%,transparent)] [mask-image:linear-gradient(to_bottom,#000_80%,transparent)]"
+        />
+      </div>
     </div>
   );
 }
