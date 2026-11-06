@@ -112,6 +112,10 @@ export const SKILL_EXTRAS: { group: string; items: string[] }[] = [
   { group: "Cloud and DevOps", items: ["Serverless, compute and storage on AWS"] },
   { group: "Tools", items: ["Custom browser extensions (Swagger PowerAuth)"] },
   {
+    group: "AI",
+    items: ["Gemini API (function calling, structured JSON, embeddings)"],
+  },
+  {
     group: "IoT and embedded",
     items: ["MQTT", "Serial communication", "RPM sensing", "Controller firmware"],
   },
@@ -129,7 +133,14 @@ export const ALSO_USED = [
   "GitHub",
 ];
 
-export type ProjectType = "Fullstack" | "Frontend" | "Backend" | "Mobile" | "IoT";
+export type ProjectType =
+  | "Fullstack"
+  | "Frontend"
+  | "Backend"
+  | "Mobile"
+  | "IoT"
+  | "Desktop"
+  | "Tool";
 
 export type Project = {
   id: string;
@@ -142,9 +153,64 @@ export type Project = {
   live?: string;
   design?: string;
   featured?: boolean;
+  /** Shown as a badge on the card, e.g. "In daily use". */
+  status?: string;
+  /** How the Gemini API is used in this project (shown as a note on the card). */
+  ai?: string;
 };
 
 export const PROJECTS: Project[] = [
+  {
+    id: "studio-clicked",
+    title: "Studio Click.ed",
+    type: "Fullstack",
+    featured: true,
+    status: "Live, used with real clients",
+    description:
+      "The website and booking system for my own photography studio in Colombo. Visitors browse the portfolio and reviews, compare packages and the year-end promo, and book a session with live availability.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "MongoDB", "Gemini API"],
+    cover: "studio-clicked.webp",
+    live: "https://www.studioclicked.com",
+    ai: "A chat assistant answers questions about packages, prices and booking in English, Sinhala or Singlish, matching the language of the visitor's last message. It uses Gemini function calling to check real free slots from the booking database and to open the booking window, and it politely refuses anything unrelated to the studio. The prompt is rebuilt on every request, so prices and dates never go stale.",
+  },
+  {
+    id: "moments",
+    title: "Moments",
+    type: "Fullstack",
+    featured: true,
+    status: "In development",
+    description:
+      "Digital wedding invitations for Sri Lankan couples, sold through the studio. Every guest gets a personal link, families RSVP together, invitations are delivered on WhatsApp, and the studio manages events, guests and printable QR cards from one console. Available in Sinhala, Tamil and English.",
+    tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion", "Gemini API"],
+    cover: "moments.webp",
+    live: "https://moments.studioclicked.com",
+    ai: "Gemini helps the studio team write invitation wording in a warm Sri Lankan tone, translate between English, Sinhala and Tamil (flagged for native review), draft reminders by purpose and language, and tidy messy guest lists pasted from WhatsApp or Excel. On the invitation, guests can ask practical questions like where to park, answered only from that couple's event details and never from the guest list. Every AI feature is optional and rate-limited.",
+  },
+  {
+    id: "workbench",
+    title: "Workbench",
+    type: "Desktop",
+    featured: true,
+    status: "In daily use",
+    description:
+      "My desktop app for planning and tracking work: a Kanban board, task timer with idle detection and Pomodoro, long-term goals, weekly review, analytics and personal finance. The Electron main process owns the MongoDB data.",
+    tech: ["Electron", "React", "Vite", "MongoDB", "Mongoose", "Gemini API"],
+    cover: "workbench.webp",
+    repo: "https://github.com/kasun-dev/workbench-electron",
+    ai: "Gemini turns plain sentences and voice notes into structured tasks, picks categories from my own history, breaks work into sub-tasks, plans my day and writes the weekly review. It also writes client-ready timesheet lines from logged sessions, reads receipts into expenses, and powers search by meaning using Gemini embeddings, so I can find a task without remembering its exact words.",
+  },
+  {
+    id: "swagger-powerauth",
+    title: "Swagger PowerAuth",
+    type: "Tool",
+    featured: true,
+    status: "In daily use",
+    description:
+      "A Chrome and Edge extension I use every day at work. It finds the token in a login response on a Swagger UI page and authorizes the page in one click, re-authorizes after a reload, keeps separate tokens for Local, Development, Staging and Production, and decodes the JWT to show its claims and expiry.",
+    tech: ["JavaScript", "Chrome Extension (Manifest V3)", "JWT", "Swagger UI"],
+    cover: "swagger-powerauth.webp",
+    repo: "https://github.com/kasun-dev/Swagger-PowerAuth",
+  },
   {
     id: "thoughtpad",
     title: "ThoughtPAD",
@@ -290,6 +356,8 @@ export const PROJECT_TYPES: ("All" | ProjectType)[] = [
   "Backend",
   "Mobile",
   "IoT",
+  "Desktop",
+  "Tool",
 ];
 
 /** Newest first. */
