@@ -26,6 +26,8 @@ function Portrait() {
         {/* Half-body cutout with its white outline baked in; the lower edge fades into the page. */}
         <img
           src="./img/kasun.webp"
+          srcSet="./img/kasun-640.webp 640w, ./img/kasun.webp 994w"
+          sizes="(min-width: 1024px) 490px, 340px"
           alt="Portrait of Kasun Jayamaha in a suit and tie"
           width={994}
           height={1300}
