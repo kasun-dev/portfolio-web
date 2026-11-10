@@ -6,6 +6,7 @@ export default function Education() {
   return (
     <Section
       id="education"
+      fill
       title="Education and certifications"
       intro="What I studied, what I have certified, and where I write."
     >
