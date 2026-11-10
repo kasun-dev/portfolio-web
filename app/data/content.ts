@@ -382,27 +382,20 @@ export const PROJECT_TYPES: ("All" | ProjectType)[] = [
   "Tool",
 ];
 
-/** Newest first. */
-export const TIMELINE = [
+/** Oldest first; the timeline reads top to bottom as a journey. */
+export type TimelineItem = {
+  when: string;
+  title: string;
+  body: string;
+  /** Marks where I am now. */
+  current?: boolean;
+};
+
+export const TIMELINE: TimelineItem[] = [
   {
-    when: "Sep 2026 to now",
-    title: "Associate at Axceera (Pvt) Ltd",
-    body: "Full-time and remote, at the company where I interned.",
-  },
-  {
-    when: "Sep 2026",
-    title: "Graduated from SLIIT",
-    body: "Finished my software engineering degree at the Sri Lanka Institute of Information Technology, Colombo.",
-  },
-  {
-    when: "Aug 2025 to Aug 2026",
-    title: "Software engineering intern at Axceera (Pvt) Ltd",
-    body: "A year working as a software engineer, finishing as I completed my degree.",
-  },
-  {
-    when: "Final year",
-    title: "IoT component of a research project",
-    body: "Built the ESP32 sensor network and AWS data pipeline for a research project with Haycarb PLC.",
+    when: "2022",
+    title: "Started at SLIIT",
+    body: "Began my degree at the Sri Lanka Institute of Information Technology in Colombo.",
   },
   {
     when: "Year 3",
@@ -410,8 +403,29 @@ export const TIMELINE = [
     body: "Built a microservices food delivery platform (gRPC, Kafka, Docker) and a hospital management system for university modules.",
   },
   {
-    when: "Ongoing",
+    when: "Alongside my studies",
     title: "Hardware experiments",
     body: "ESP32 controllers and sensors, including a YPVS controller with RPM sensing, documented with code and circuit diagrams on GitHub.",
+  },
+  {
+    when: "Aug 2025 to Aug 2026",
+    title: "Software engineering intern at Axceera",
+    body: "A year working as a software engineer while finishing my degree.",
+  },
+  {
+    when: "Final year",
+    title: "Research project with Haycarb PLC",
+    body: "Built the ESP32 sensor network and AWS data pipeline for an AR and AI guided maintenance system, deployed in a live factory.",
+  },
+  {
+    when: "Sep 2026",
+    title: "Graduated from SLIIT",
+    body: "Completed my degree and kept going at Axceera.",
+  },
+  {
+    when: "Sep 2026 to now",
+    title: "Associate at Axceera",
+    body: "Full-time and remote, at the company where I interned.",
+    current: true,
   },
 ];
