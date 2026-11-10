@@ -32,8 +32,9 @@ export default function Contact() {
   return (
     <Section
       id="contact"
+      fill
       title="Let's talk"
-      intro="Have a project, an internship or a question? I read every message."
+      intro="Have a project, an opportunity or a question? I read every message."
     >
       <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div>

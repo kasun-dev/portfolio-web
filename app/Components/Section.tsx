@@ -5,15 +5,19 @@ type Props = {
   id: string;
   title: string;
   intro?: string;
+  /** Fill the screen height and centre the content (for short sections). */
+  fill?: boolean;
   children: ReactNode;
 };
 
-export default function Section({ id, title, intro, children }: Props) {
+export default function Section({ id, title, intro, fill, children }: Props) {
   return (
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="border-t border-line pb-20 pt-24 sm:pb-24 sm:pt-28"
+      className={`border-t border-line pb-20 pt-24 sm:pb-24 sm:pt-28 ${
+        fill ? "flex min-h-screen min-h-svh flex-col justify-center" : ""
+      }`}
     >
       <div className={container}>
         <header className="max-w-2xl">
