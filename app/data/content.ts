@@ -46,6 +46,7 @@ export const NAV = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "timeline", label: "Timeline" },
+  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -84,7 +85,7 @@ export const SKILLS: Skill[] = [
   { name: "Flutter", icon: "flutter.svg", group: "Mobile" },
   { name: "Kotlin", icon: "kotlin.svg", group: "Mobile" },
   { name: "Node.js", icon: "nodejs.svg", group: "Backend" },
-  { name: "Express", icon: "express.png", group: "Backend" },
+  { name: "Express", icon: "express.webp", group: "Backend" },
   { name: "NestJS", icon: "nestjs.svg", group: "Backend" },
   { name: "PostgreSQL", icon: "postgresql.svg", group: "Databases" },
   { name: "MongoDB", icon: "mongodb.svg", group: "Databases" },
@@ -98,7 +99,7 @@ export const SKILLS: Skill[] = [
   { name: "Postman", icon: "postman.svg", group: "Tools" },
   { name: "Swagger UI", icon: "swagger.svg", group: "Tools" },
   { name: "Figma", icon: "figma.svg", group: "Tools" },
-  { name: "ESP32", icon: "esp32.png", group: "IoT and embedded" },
+  { name: "ESP32", icon: "esp32.webp", group: "IoT and embedded" },
   { name: "Arduino", icon: "arduino.svg", group: "IoT and embedded" },
 ];
 
@@ -173,9 +174,9 @@ export const PROJECTS: Project[] = [
     featured: true,
     status: "Deployed at Haycarb PLC",
     description:
-      "My final-year research project at SLIIT, built with a team of four for Haycarb PLC: AR-guided maintenance with IoT monitoring for industrial machinery. I built the IoT part. ESP32 sensor nodes with ADXL345 vibration sensors send readings to a main node, which publishes them to AWS IoT over secure MQTT. AWS Lambda preprocesses the data into DynamoDB, ready for the team's fault-diagnosis and predictive-maintenance models.",
+      "My final-year research project at SLIIT (PredictiveOps), built with a team of four for Haycarb PLC and deployed on a kiln exhaust blower. I built the IoT part: ESP32 sensor nodes send vibration readings over ESP-NOW to a gateway, which publishes to AWS IoT. A serverless pipeline (Lambda, DynamoDB) cleans the data for the team's fault-diagnosis and predictive-maintenance models.",
     learned:
-      "Designing hardware for failure: nodes that keep sending when a sensor fails, redundant sensors, and Wi-Fi plus GSM paths. I learned ESP-NOW networking between ESP32 nodes, secure MQTT to AWS IoT, and serverless preprocessing on AWS, then checked it on a live factory deployment with over 69,000 records and more than 90% data availability.",
+      "Designing hardware for failure. Splitting the gateway across two microcontrollers kept the radio from competing with itself, reaching a 96.41% packet delivery rate in a high-interference factory. The cloud pipeline processes each reading in under 300 ms, and a SIM800L cellular backup sends an SMS alert in about 4 seconds even when the facility network is down. I also learned ESP-NOW networking, secure MQTT to AWS IoT and serverless preprocessing.",
     tech: ["ESP32", "ADXL345", "ESP-NOW", "MQTT", "AWS IoT Core", "AWS Lambda", "DynamoDB", "SIM800L GSM", "C++"],
     cover: "trifusion.webp",
     repo: "https://github.com/kasun-dev/research-web",
@@ -228,7 +229,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     status: "In daily use",
     description:
-      "A Chrome and Edge extension I use every day at work. It finds the token in a login response on a Swagger UI page and authorizes the page in one click, re-authorizes after a reload, keeps separate tokens for Local, Development, Staging and Production, and decodes the JWT to show its claims and expiry.",
+      "A Chrome and Edge extension I use every day. It finds the token in a login response on a Swagger UI page and authorizes the page in one click, re-authorizes after a reload, keeps separate tokens for Local, Development, Staging and Production, and decodes the JWT to show its claims and expiry.",
     tech: ["JavaScript", "Chrome Extension (Manifest V3)", "JWT", "Swagger UI"],
     cover: "swagger-powerauth.webp",
     repo: "https://github.com/kasun-dev/Swagger-PowerAuth",
@@ -395,7 +396,7 @@ export const TIMELINE: TimelineItem[] = [
   {
     when: "2022",
     title: "Started at SLIIT",
-    body: "Began my degree at the Sri Lanka Institute of Information Technology in Colombo.",
+    body: "Began my BSc (Hons) in Information Technology at the Sri Lanka Institute of Information Technology in Colombo.",
   },
   {
     when: "Year 3",
@@ -418,14 +419,35 @@ export const TIMELINE: TimelineItem[] = [
     body: "Built the ESP32 sensor network and AWS data pipeline for an AR and AI guided maintenance system, deployed in a live factory.",
   },
   {
-    when: "Sep 2026",
+    when: "2026",
     title: "Graduated from SLIIT",
-    body: "Completed my degree and kept going at Axceera.",
+    body: "Completed my BSc (Hons) in Information Technology, specializing in Software Engineering.",
   },
   {
-    when: "Sep 2026 to now",
+    when: "Aug 2026 to now",
     title: "Associate at Axceera",
     body: "Full-time and remote, at the company where I interned.",
     current: true,
+  },
+];
+
+export const CREDENTIALS = [
+  {
+    kind: "Education",
+    title: "BSc (Hons) in Information Technology, Software Engineering",
+    detail: "Sri Lanka Institute of Information Technology (SLIIT), completed 2026",
+    note: "Thesis: AR-AI Guided Maintenance with IoT Monitoring for Industrial Machinery",
+  },
+  {
+    kind: "Certification",
+    title: "AI/ML Engineer, Stage 1",
+    detail: "Centre for Open and Distance Education (CODE), SLIIT",
+  },
+  {
+    kind: "Writing",
+    title: "Technical writing on Medium",
+    detail: "Articles on IoT, ESP32, embedded systems and full-stack development",
+    href: "https://medium.com/@ks2005755",
+    cta: "Read my articles",
   },
 ];

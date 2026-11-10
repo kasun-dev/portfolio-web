@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { Project } from "../data/content";
 import { btnOutline } from "../data/ui";
 import { ArrowUpRightIcon, CloseIcon } from "./Icons";
@@ -63,7 +63,7 @@ export default function ProjectDrawer({
 
   return (
     <div className="fixed inset-0 z-[80]">
-      <motion.div
+      <m.div
         className="absolute inset-0 bg-black/60"
         onClick={onClose}
         initial={{ opacity: 0 }}
@@ -72,7 +72,7 @@ export default function ProjectDrawer({
         transition={t}
         aria-hidden
       />
-      <motion.div
+      <m.div
         ref={panel}
         role="dialog"
         aria-modal="true"
@@ -179,7 +179,7 @@ export default function ProjectDrawer({
             ))}
           </div>
         )}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, LazyMotion, m } from "framer-motion";
 import {
   LINKS,
   PROJECTS,
@@ -57,7 +57,7 @@ function Card({
   ].filter((l): l is { label: string; href: string } => Boolean(l.href));
 
   return (
-    <motion.li
+    <m.li
       layout
       initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -125,7 +125,7 @@ function Card({
           )}
         </div>
       </div>
-    </motion.li>
+    </m.li>
   );
 }
 
@@ -151,6 +151,8 @@ export default function Projects() {
     t === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.type === t).length;
 
   return (
+    // Animation code loads after the first paint instead of with the page.
+    <LazyMotion features={() => import("./motionFeatures").then((r) => r.default)}>
     <Section
       id="projects"
       title="Projects"
@@ -169,7 +171,7 @@ export default function Projects() {
                 : "border-line bg-surface text-muted hover:border-fg/40 hover:text-fg"
             }`}
           >
-            {t} <span className="opacity-60">{countFor(t)}</span>
+            {t} <span className="opacity-75">{countFor(t)}</span>
           </button>
         ))}
       </div>
@@ -207,5 +209,6 @@ export default function Projects() {
         {selected && <ProjectDrawer key={selected.id} project={selected} onClose={close} />}
       </AnimatePresence>
     </Section>
+    </LazyMotion>
   );
 }
