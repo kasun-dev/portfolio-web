@@ -377,7 +377,7 @@ export const PROJECT_TYPES: ("All" | ProjectType)[] = [
   "Tool",
 ];
 
-/** Oldest first; the timeline reads top to bottom as a journey. */
+/** Stored oldest first; the Timeline component shows it newest first. */
 export type TimelineItem = {
   when: string;
   title: string;
