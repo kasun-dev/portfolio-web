@@ -35,14 +35,14 @@ export default function About() {
           >
             Studio Click.ed
           </a>
-          , a photography studio in Colombo, and share mobile photography as{" "}
+          , a photography studio in Colombo, and share photography as{" "}
           <a
             href={LINKS.photography}
             target="_blank"
             rel="noopener noreferrer"
             className="underline decoration-1 underline-offset-4 hover:decoration-2"
           >
-            click.ed_by
+            studio_click.ed
           </a>{" "}
           and travel when I can.
         </p>
