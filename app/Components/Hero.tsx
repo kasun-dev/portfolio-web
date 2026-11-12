@@ -5,7 +5,7 @@ import { MailIcon } from "./Icons";
 /** The top of the page reads like a Medium profile: photo, name, one line, actions. */
 export default function Hero() {
   return (
-    <section id="home" aria-labelledby="home-title" className="pb-12 pt-10 sm:pt-14">
+    <section id="home" aria-labelledby="home-title" className="flex min-h-[calc(100svh-3.5rem)] flex-col justify-center py-12">
       <img
         src="./img/avatar.webp"
         alt="Portrait of Kasun Jayamaha"
@@ -16,7 +16,7 @@ export default function Hero() {
       />
       <h1
         id="home-title"
-        className="mt-6 text-[34px] font-bold leading-[1.1] tracking-tight sm:text-[44px]"
+        className="mt-6 text-[38px] font-bold leading-[1.05] tracking-tight sm:text-[56px]"
       >
         {SITE.name}
       </h1>

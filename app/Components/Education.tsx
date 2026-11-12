@@ -3,11 +3,11 @@ import { ArrowUpRightIcon } from "./Icons";
 
 export default function Education() {
   return (
-    <section id="education" aria-labelledby="education-title" className="border-t border-line py-12">
-      <h2 id="education-title" className="text-[28px] font-bold leading-tight tracking-tight">
+    <section id="education" aria-labelledby="education-title" className="min-h-[calc(100svh-3.5rem)] border-t border-line py-16">
+      <h2 id="education-title" className="text-[34px] font-bold leading-[1.1] tracking-tight sm:text-[46px]">
         Education
       </h2>
-      <p className="mt-3 font-display text-lg leading-relaxed text-muted">
+      <p className="mt-4 font-display text-xl leading-relaxed text-muted">
         What I studied, what I have certified, and where I write.
       </p>
       <ul className="mt-8 border-t border-line">
