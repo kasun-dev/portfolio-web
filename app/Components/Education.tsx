@@ -1,26 +1,25 @@
 import { CREDENTIALS } from "../data/content";
 import { ArrowUpRightIcon } from "./Icons";
-import Section from "./Section";
 
 export default function Education() {
   return (
-    <Section
-      id="education"
-      fill
-      title="Education and certifications"
-      intro="What I studied, what I have certified, and where I write."
-    >
-      <ul className="grid gap-5 md:grid-cols-3">
+    <section id="education" aria-labelledby="education-title" className="border-t border-line py-12">
+      <h2 id="education-title" className="text-[28px] font-bold leading-tight tracking-tight">
+        Education
+      </h2>
+      <p className="mt-3 font-display text-lg leading-relaxed text-muted">
+        What I studied, what I have certified, and where I write.
+      </p>
+      <ul className="mt-8 border-t border-line">
         {CREDENTIALS.map((c) => (
-          <li
-            key={c.title}
-            className="glass flex flex-col rounded-2xl p-6"
-          >
-            <p className="text-sm text-muted">{c.kind}</p>
-            <h3 className="mt-2 font-display text-xl font-semibold leading-snug">{c.title}</h3>
-            <p className="mt-2 text-pretty text-[15px] leading-relaxed text-muted">{c.detail}</p>
+          <li key={c.title} className="border-b border-line py-6">
+            <span className="inline-flex rounded-full bg-surface px-3 py-1 text-xs text-muted">
+              {c.kind}
+            </span>
+            <h3 className="mt-3 text-xl font-bold leading-snug">{c.title}</h3>
+            <p className="mt-2 text-[15px] text-muted">{c.detail}</p>
             {c.note && (
-              <p className="mt-3 border-l-2 border-brand pl-3 text-sm leading-relaxed text-muted">
+              <p className="mt-3 border-l-2 border-fg pl-4 font-display text-[17px] leading-relaxed text-fg">
                 {c.note}
               </p>
             )}
@@ -29,7 +28,7 @@ export default function Education() {
                 href={c.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold underline decoration-brand decoration-2 underline-offset-4"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium underline underline-offset-4"
               >
                 {c.cta}
                 <ArrowUpRightIcon />
@@ -38,6 +37,6 @@ export default function Education() {
           </li>
         ))}
       </ul>
-    </Section>
+    </section>
   );
 }

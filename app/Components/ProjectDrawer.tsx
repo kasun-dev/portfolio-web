@@ -64,7 +64,7 @@ export default function ProjectDrawer({
   return (
     <div className="fixed inset-0 z-[80]">
       <m.div
-        className="absolute inset-0 bg-black/60"
+        className="absolute inset-0 bg-black/40"
         onClick={onClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -77,14 +77,14 @@ export default function ProjectDrawer({
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-drawer-title"
-        className="absolute inset-y-0 right-0 flex w-full max-w-xl flex-col glass border-l border-line bg-surface/85 shadow-2xl backdrop-blur-xl"
+        className="absolute inset-y-0 right-0 flex w-full max-w-xl flex-col border-l border-line bg-bg shadow-2xl"
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={t}
       >
         <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-3 sm:px-6">
-          <span className="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
+          <span className="rounded-full bg-surface px-3 py-1 text-xs text-muted">
             {project.type}
           </span>
           <button
@@ -92,7 +92,7 @@ export default function ProjectDrawer({
             type="button"
             onClick={onClose}
             aria-label="Close project details"
-            className="grid h-10 w-10 place-items-center rounded-full text-muted transition-colors hover:text-fg"
+            className="grid h-10 w-10 place-items-center rounded-full text-muted transition-colors hover:bg-surface hover:text-fg"
           >
             <CloseIcon />
           </button>
@@ -113,26 +113,26 @@ export default function ProjectDrawer({
             <div>
               <h3
                 id="project-drawer-title"
-                className="text-2xl font-semibold leading-tight"
+                className="text-[28px] font-bold leading-tight tracking-tight"
               >
                 {project.title}
               </h3>
               {project.status && (
                 <p className="mt-2 inline-flex items-center gap-2 text-sm text-muted">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden />
+                  <span className="h-2 w-2 rounded-full bg-emerald-600" aria-hidden />
                   {project.status}
                 </p>
               )}
             </div>
 
-            <p className="text-pretty text-base leading-relaxed text-muted">
+            <p className="font-display text-pretty text-[19px] leading-[1.65] text-fg">
               {project.description}
             </p>
 
             {project.ai && (
-              <div className="border-l-2 border-brand pl-4">
+              <div className="border-l-2 border-fg pl-4">
                 <h4 className="font-medium">How Gemini helps</h4>
-                <p className="mt-1.5 text-pretty text-[15px] leading-relaxed text-muted">
+                <p className="mt-1.5 font-display text-pretty text-[17px] leading-[1.65] text-muted">
                   {project.ai}
                 </p>
               </div>
@@ -141,7 +141,7 @@ export default function ProjectDrawer({
             {project.learned && (
               <div>
                 <h4 className="font-medium">What I learned</h4>
-                <p className="mt-1.5 text-pretty text-[15px] leading-relaxed text-muted">
+                <p className="mt-1.5 font-display text-pretty text-[17px] leading-[1.65] text-muted">
                   {project.learned}
                 </p>
               </div>
@@ -153,7 +153,7 @@ export default function ProjectDrawer({
                 {project.tech.map((tech) => (
                   <li
                     key={tech}
-                    className="rounded-md border border-line bg-bg px-2 py-0.5 text-xs text-muted"
+                    className="rounded-full bg-surface px-3 py-1 text-xs text-muted"
                   >
                     {tech}
                   </li>

@@ -6,9 +6,9 @@ import Projects from "./Components/Projects";
 import Skills from "./Components/Skills";
 import Timeline from "./Components/Timeline";
 
-export default function Page() {
+export default function Home() {
   return (
-    <main id="main">
+    <>
       <Hero />
       <About />
       <Skills />
@@ -16,6 +16,6 @@ export default function Page() {
       <Timeline />
       <Education />
       <Contact />
-    </main>
+    </>
   );
 }

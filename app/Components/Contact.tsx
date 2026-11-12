@@ -5,7 +5,6 @@ import { LINKS, SITE } from "../data/content";
 import { btnPrimary } from "../data/ui";
 import ContactForm from "./ContactForm";
 import { ArrowUpRightIcon, CheckIcon, CopyIcon, MailIcon } from "./Icons";
-import Section from "./Section";
 
 const profiles = [
   { label: "GitHub", handle: "kasun-dev", href: LINKS.github },
@@ -30,51 +29,49 @@ export default function Contact() {
   }
 
   return (
-    <Section
-      id="contact"
-      fill
-      title="Let's talk"
-      intro="Have a project, an opportunity or a question? I read every message."
-    >
-      <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        <div>
-          <div className="flex flex-wrap items-center gap-3">
-            <a href={`mailto:${SITE.email}`} className={btnPrimary}>
-              <MailIcon width={18} height={18} />
-              {SITE.email}
-            </a>
-            <button
-              type="button"
-              onClick={copyEmail}
-              className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-muted transition-colors hover:text-fg"
-            >
-              {copied ? <CheckIcon /> : <CopyIcon />}
-              <span role="status">{copied ? "Copied" : "Copy email"}</span>
-            </button>
-          </div>
+    <section id="contact" aria-labelledby="contact-title" className="border-t border-line py-12">
+      <h2 id="contact-title" className="text-[28px] font-bold leading-tight tracking-tight">
+        Contact
+      </h2>
+      <p className="mt-3 font-display text-lg leading-relaxed text-muted">
+        Have a project, an opportunity or a question? I read every message.
+      </p>
 
-          <ul className="glass mt-10 rounded-2xl px-5">
-            {profiles.map((p) => (
-              <li key={p.label} className="border-b border-line last:border-b-0">
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-4 py-4 transition-colors hover:text-accent"
-                >
-                  <span className="font-medium">{p.label}</span>
-                  <span className="flex items-center gap-1.5 text-sm text-muted">
-                    {p.handle}
-                    <ArrowUpRightIcon />
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <ContactForm />
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <a href={`mailto:${SITE.email}`} className={btnPrimary}>
+          <MailIcon width={16} height={16} />
+          {SITE.email}
+        </a>
+        <button
+          type="button"
+          onClick={copyEmail}
+          className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-muted transition-colors hover:text-fg"
+        >
+          {copied ? <CheckIcon /> : <CopyIcon />}
+          <span role="status">{copied ? "Copied" : "Copy email"}</span>
+        </button>
       </div>
-    </Section>
+
+      <ul className="mt-8 border-t border-line">
+        {profiles.map((p) => (
+          <li key={p.label} className="border-b border-line">
+            <a
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between gap-4 py-4 transition-colors hover:text-muted"
+            >
+              <span className="font-medium">{p.label}</span>
+              <span className="flex items-center gap-1.5 text-sm text-muted">
+                {p.handle}
+                <ArrowUpRightIcon />
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <ContactForm />
+    </section>
   );
 }

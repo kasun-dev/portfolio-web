@@ -42,19 +42,13 @@ export const CONTACT_FORM = {
 };
 
 export const NAV = [
+  { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "timeline", label: "Timeline" },
   { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
-];
-
-export const ROLES = [
-  "full-stack web apps",
-  "backend APIs and microservices",
-  "cloud systems on AWS",
-  "IoT systems on ESP32",
 ];
 
 export type SkillGroup =
