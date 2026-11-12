@@ -22,7 +22,7 @@ export const LINKS = {
   github: "https://github.com/kasun-dev",
   linkedin: "https://www.linkedin.com/in/kasun-jayamaha-32963829b/",
   instagram: "https://www.instagram.com/kx.0023/",
-  photography: "https://www.instagram.com/click.ed_by/",
+  photography: "https://www.instagram.com/studio_click.ed/",
   facebook:
     "https://www.facebook.com/profile.php?id=100031979594182&mibextid=ZbWKwL",
   medium: "https://medium.com/@ks2005755",
