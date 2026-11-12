@@ -2,11 +2,11 @@ import { TIMELINE } from "../data/content";
 
 export default function Timeline() {
   return (
-    <section id="timeline" aria-labelledby="timeline-title" className="border-t border-line py-12">
-      <h2 id="timeline-title" className="text-[28px] font-bold leading-tight tracking-tight">
+    <section id="timeline" aria-labelledby="timeline-title" className="min-h-[calc(100svh-3.5rem)] border-t border-line py-16">
+      <h2 id="timeline-title" className="text-[34px] font-bold leading-[1.1] tracking-tight sm:text-[46px]">
         Timeline
       </h2>
-      <p className="mt-3 font-display text-lg leading-relaxed text-muted">
+      <p className="mt-4 font-display text-xl leading-relaxed text-muted">
         From the first lecture at SLIIT to where I work today.
       </p>
       <ol className="mt-10">

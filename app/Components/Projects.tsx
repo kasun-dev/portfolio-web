@@ -127,11 +127,11 @@ export default function Projects() {
   const visible = showAll || q ? matching : matching.slice(0, INITIAL);
 
   return (
-    <section id="projects" aria-labelledby="projects-title" className="border-t border-line pt-12">
-      <h2 id="projects-title" className="text-[28px] font-bold leading-tight tracking-tight">
+    <section id="projects" aria-labelledby="projects-title" className="min-h-[calc(100svh-3.5rem)] border-t border-line pt-16">
+      <h2 id="projects-title" className="text-[34px] font-bold leading-[1.1] tracking-tight sm:text-[46px]">
         Projects
       </h2>
-      <p className="mt-3 font-display text-lg leading-relaxed text-muted">
+      <p className="mt-4 font-display text-xl leading-relaxed text-muted">
         Things I have built for university, for clients and for myself.
       </p>
 

@@ -9,8 +9,8 @@ const facts = [
 
 export default function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="border-t border-line py-12">
-      <h2 id="about-title" className="text-[28px] font-bold leading-tight tracking-tight">
+    <section id="about" aria-labelledby="about-title" className="min-h-[calc(100svh-3.5rem)] border-t border-line py-16">
+      <h2 id="about-title" className="text-[34px] font-bold leading-[1.1] tracking-tight sm:text-[46px]">
         About
       </h2>
       <div className="mt-6 space-y-6 font-display text-[20px] leading-[1.7] text-fg">

@@ -23,11 +23,11 @@ const groups = ORDER.map((group) => ({
 
 export default function Skills() {
   return (
-    <section id="skills" aria-labelledby="skills-title" className="border-t border-line py-12">
-      <h2 id="skills-title" className="text-[28px] font-bold leading-tight tracking-tight">
+    <section id="skills" aria-labelledby="skills-title" className="min-h-[calc(100svh-3.5rem)] border-t border-line py-16">
+      <h2 id="skills-title" className="text-[34px] font-bold leading-[1.1] tracking-tight sm:text-[46px]">
         Skills
       </h2>
-      <p className="mt-3 font-display text-lg leading-relaxed text-muted">
+      <p className="mt-4 font-display text-xl leading-relaxed text-muted">
         What I reach for, grouped by the kind of work.
       </p>
       <dl className="mt-8 border-t border-line">
