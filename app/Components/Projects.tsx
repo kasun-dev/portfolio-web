@@ -161,6 +161,15 @@ export default function Projects() {
         </div>
       </div>
 
+      {q && (
+        <p className="flex items-center gap-3 border-b border-line py-3 text-sm text-muted">
+          Showing results for &ldquo;{query.trim()}&rdquo;
+          <button type="button" onClick={() => setQuery("")} className="font-medium text-fg underline underline-offset-4">
+            Clear
+          </button>
+        </p>
+      )}
+
       <p role="status" className="sr-only">
         {matching.length} {matching.length === 1 ? "project" : "projects"} shown
       </p>
