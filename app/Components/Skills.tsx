@@ -19,8 +19,8 @@ export default function Skills() {
         <div>
           <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
             {groups.map((group) => (
-              <div key={group} className="border-t border-line pt-3">
-                <dt className="font-medium">{group}</dt>
+              <div key={group} className="glass rounded-xl p-4">
+                <dt className="font-display text-lg font-semibold">{group}</dt>
                 <dd className="mt-1 text-muted">
                   {[
                     ...SKILLS.filter((s) => s.group === group).map((s) => s.name),

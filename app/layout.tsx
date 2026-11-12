@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import "@fontsource-variable/fraunces/wght.css";
 import "./globals.css";
 import { LINKS, SITE } from "./data/content";
 import Footer from "./Components/Footer";
 import Nav from "./Components/Nav";
 import PortraitBackdrop from "./Components/PortraitBackdrop";
+import Providers from "./Components/Providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -107,10 +109,12 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <PortraitBackdrop />
-        <Nav />
-        {children}
-        <Footer />
+        <Providers>
+          <PortraitBackdrop />
+          <Nav />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

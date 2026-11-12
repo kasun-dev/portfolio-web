@@ -3,7 +3,7 @@ import { container } from "../data/ui";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line py-10">
+    <footer className="border-t border-line bg-bg/50 py-10 backdrop-blur-md">
       <div
         className={`${container} flex flex-col items-start justify-between gap-4 text-sm text-muted sm:flex-row sm:items-center`}
       >

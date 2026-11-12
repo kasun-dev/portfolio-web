@@ -13,19 +13,19 @@ export default function About() {
   return (
     <Section id="about" title="About me">
       <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-        <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[2rem] bg-[#14161d] ring-1 ring-line">
+        <div className="mx-auto w-full max-w-[340px] glass overflow-hidden rounded-[2rem] p-2">
           <img
             src="./img/kasun-about.webp"
             alt="Kasun working at a desk"
             width={756}
             height={1100}
             loading="lazy"
-            className="h-auto w-full"
+            className="h-auto w-full rounded-[1.5rem]"
           />
         </div>
 
         <div>
-          <div className="max-w-xl space-y-4 text-lg leading-relaxed text-muted">
+          <div className="glass max-w-xl space-y-4 rounded-2xl p-6 text-lg leading-relaxed text-fg/85 sm:p-7">
             <p>
               I&apos;m a software engineer who graduated from SLIIT in September
               2026. After a year as an intern at {SITE.company}, I now work
@@ -53,7 +53,7 @@ export default function About() {
 
           <dl className="mt-10 grid max-w-xl gap-x-8 gap-y-5 sm:grid-cols-2">
             {facts.map((f) => (
-              <div key={f.term} className="border-t border-line pt-3">
+              <div key={f.term} className="glass rounded-xl p-4">
                 <dt className="text-sm text-muted">{f.term}</dt>
                 <dd className="mt-1 font-medium">{f.detail}</dd>
               </div>

@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { container } from "../data/ui";
+import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 
 type Props = {
   id: string;
@@ -15,21 +17,22 @@ export default function Section({ id, title, intro, fill, children }: Props) {
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className={`border-t border-line pb-20 pt-24 sm:pb-24 sm:pt-28 ${
+      className={`pb-20 pt-24 sm:pb-24 sm:pt-28 ${
         fill ? "flex min-h-screen min-h-svh flex-col justify-center" : ""
       }`}
     >
       <div className={container}>
         <header className="max-w-2xl">
-          <h2
-            id={`${id}-title`}
-            className="text-3xl font-semibold tracking-tight sm:text-4xl"
-          >
-            {title}
-          </h2>
-          {intro && <p className="mt-3 text-lg text-muted">{intro}</p>}
+          <SectionTitle id={id} text={title} />
+          {intro && (
+            <Reveal delay={0.1} y={14}>
+              <p className="mt-3 text-lg text-muted">{intro}</p>
+            </Reveal>
+          )}
         </header>
-        <div className="mt-12">{children}</div>
+        <Reveal className="mt-12" delay={0.05} y={34}>
+          {children}
+        </Reveal>
       </div>
     </section>
   );

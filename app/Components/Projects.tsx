@@ -63,14 +63,14 @@ function Card({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.2 }}
-      className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface"
+      className="glass flex flex-col overflow-hidden rounded-2xl"
     >
       <div className="aspect-[16/9] overflow-hidden border-b border-line bg-bg">
         <Cover project={project} />
       </div>
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-lg font-semibold leading-snug">{project.title}</h3>
+          <h3 className="font-display text-xl font-semibold leading-snug">{project.title}</h3>
           <span className="mt-0.5 shrink-0 rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
             {project.type}
           </span>
@@ -88,7 +88,7 @@ function Card({
           {project.tech.slice(0, 4).map((t) => (
             <li
               key={t}
-              className="rounded-md border border-line bg-bg px-2 py-0.5 text-xs text-muted"
+              className="rounded-md border border-line bg-bg/50 px-2 py-0.5 text-xs text-muted"
             >
               {t}
             </li>
@@ -102,7 +102,7 @@ function Card({
             type="button"
             onClick={(e) => onOpen(project, e.currentTarget)}
             aria-label={`More info about ${project.title}`}
-            className="rounded-full border border-line bg-bg px-4 py-1.5 text-sm font-semibold transition-colors hover:border-fg/40"
+            className="rounded-full border border-line bg-bg/50 px-4 py-1.5 text-sm font-semibold transition-colors hover:border-fg/40"
           >
             More info
           </button>
@@ -168,7 +168,7 @@ export default function Projects() {
             className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
               type === t
                 ? "border-brand bg-brand font-semibold text-[#101218]"
-                : "border-line bg-surface text-muted hover:border-fg/40 hover:text-fg"
+                : "glass text-muted hover:border-fg/40 hover:text-fg"
             }`}
           >
             {t} <span className="opacity-75">{countFor(t)}</span>

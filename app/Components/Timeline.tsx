@@ -1,14 +1,15 @@
 import { TIMELINE, type TimelineItem } from "../data/content";
+import Reveal from "./Reveal";
 import Section from "./Section";
 
 function Card({ item }: { item: TimelineItem }) {
   return (
     <div
-      className={`rounded-2xl border bg-surface p-5 ${
-        item.current ? "border-brand shadow-[0_0_0_3px_rgb(var(--brand)/0.15)]" : "border-line"
+      className={`glass rounded-2xl p-5 ${
+        item.current ? "!border-brand shadow-[0_0_0_3px_rgb(var(--brand)/0.15)]" : ""
       }`}
     >
-      <h3 className="text-lg font-semibold leading-snug">{item.title}</h3>
+      <h3 className="font-display text-xl font-semibold leading-snug">{item.title}</h3>
       <p className="mt-1.5 text-pretty text-[15px] leading-relaxed text-muted">{item.body}</p>
     </div>
   );
@@ -51,14 +52,16 @@ export default function Timeline() {
                 }`}
               />
               {/* card */}
-              <div
+              <Reveal
+                x={left ? -40 : 40}
+                y={10}
                 className={`col-start-2 row-start-1 ${
                   left ? "md:col-start-1" : "md:col-start-3"
                 }`}
               >
                 <When item={item} className="mb-1.5 md:hidden" />
                 <Card item={item} />
-              </div>
+              </Reveal>
               {/* date on the opposite side (md+) */}
               <div
                 className={`hidden md:row-start-1 md:flex md:items-start md:pt-5 ${
