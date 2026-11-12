@@ -16,13 +16,40 @@ export default function ContactForm() {
     if (data.get("website")) return; // honeypot: real visitors never fill this in
 
     setStatus("sending");
-    const body = new URLSearchParams({
-      [CONTACT_FORM.fields.name]: String(data.get("name") ?? ""),
-      [CONTACT_FORM.fields.email]: String(data.get("email") ?? ""),
-      [CONTACT_FORM.fields.message]: String(data.get("message") ?? ""),
-    });
+    const fields = {
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      message: String(data.get("message") ?? ""),
+    };
 
     try {
+      // Preferred: the email route (Resend), available on the Vercel site.
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      if (res.ok) {
+        form.reset();
+        setStatus("sent");
+        return;
+      }
+      // A real rejection (bad input, rate limit, email service) is shown as an error.
+      // Anything else means there is no email route here (static hosts), so use the Google Form.
+      if ([400, 429, 502].includes(res.status)) {
+        setStatus("error");
+        return;
+      }
+    } catch {
+      /* network error: try the fallback below */
+    }
+
+    try {
+      const body = new URLSearchParams({
+        [CONTACT_FORM.fields.name]: fields.name,
+        [CONTACT_FORM.fields.email]: fields.email,
+        [CONTACT_FORM.fields.message]: fields.message,
+      });
       // Google Forms does not send CORS headers, so the response is opaque.
       await fetch(CONTACT_FORM.action, { method: "POST", mode: "no-cors", body });
       form.reset();

@@ -61,6 +61,80 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
 
+/* Custom round cursor (mouse only; see Cursor.tsx) */
+.cursor-layer {
+  display: none;
+}
+.has-cursor .cursor-layer {
+  display: block;
+}
+.has-cursor,
+.has-cursor * {
+  cursor: none !important;
+}
+.has-cursor.cursor-text input,
+.has-cursor.cursor-text textarea {
+  cursor: text !important;
+}
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  pointer-events: none;
+  will-change: transform;
+}
+.cursor-dot::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 9999px;
+  background: rgb(var(--fg));
+  transition: transform 0.15s ease;
+}
+.cursor-ring::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 9999px;
+  border: 1.5px solid rgb(var(--fg) / 0.5);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.cursor-pulse {
+  position: absolute;
+  left: -17px;
+  top: -17px;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  background: rgb(var(--fg) / 0.22);
+  animation: cursor-pulse 1.8s ease-out infinite;
+}
+@keyframes cursor-pulse {
+  from {
+    transform: scale(0.35);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+.cursor-link .cursor-ring::before {
+  transform: scale(1.45);
+}
+.cursor-link .cursor-dot::before {
+  transform: scale(0.6);
+}
+.cursor-text .cursor-layer {
+  display: none;
+}
+
 /* First-visit skeleton: glowing placeholder blocks, then it fades away */
 .sk {
   position: relative;

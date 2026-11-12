@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "@fontsource-variable/source-serif-4/wght.css";
 import "./globals.css";
 import { LINKS, SITE } from "./data/content";
+import Cursor from "./Components/Cursor";
 import Providers from "./Components/Providers";
 import Shell from "./Components/Shell";
 import Splash from "./Components/Splash";
@@ -109,6 +110,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Splash />
+        <Cursor />
         <Providers>
           <Shell>{children}</Shell>
         </Providers>
