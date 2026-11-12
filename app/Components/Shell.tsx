@@ -11,6 +11,7 @@ import {
 } from "react";
 import { AnimatePresence } from "framer-motion";
 import type { Project } from "../data/content";
+import ChatWidget from "./ChatWidget";
 import Footer from "./Footer";
 import ProjectDrawer from "./ProjectDrawer";
 import RightRail from "./RightRail";
@@ -64,6 +65,7 @@ export default function Shell({ children }: { children: ReactNode }) {
           <RightRail />
         </div>
       </div>
+      {process.env.NEXT_PUBLIC_CHAT_ENABLED === "1" && <ChatWidget />}
       <AnimatePresence>
         {selected && <ProjectDrawer key={selected.id} project={selected} onClose={closeProject} />}
       </AnimatePresence>
