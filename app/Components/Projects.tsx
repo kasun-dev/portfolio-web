@@ -4,10 +4,9 @@ import { useMemo, useState } from "react";
 import {
   PROJECTS,
   PROJECT_TYPES,
-  SITE,
   type Project,
 } from "../data/content";
-import { ArrowUpRightIcon } from "./Icons";
+import { ArrowUpRightIcon, TypeIcon } from "./Icons";
 import { useShell } from "./Shell";
 
 const INITIAL = 6;
@@ -52,14 +51,8 @@ function Row({ project, onOpen }: { project: Project; onOpen: (p: Project) => vo
     <li className="relative flex gap-5 border-b border-line py-7 sm:gap-8">
       <div className="min-w-0 flex-1">
         <p className="flex items-center gap-2 text-[13px] text-muted">
-          <img
-            src="./img/avatar-96.webp"
-            alt=""
-            width={20}
-            height={20}
-            className="h-5 w-5 rounded-full object-cover"
-          />
-          <span className="text-fg">{SITE.name}</span>
+          <TypeIcon type={project.type} width={16} height={16} />
+          <span className="text-fg">{project.type}</span>
           {project.status && (
             <>
               <span aria-hidden>·</span>
@@ -84,9 +77,6 @@ function Row({ project, onOpen }: { project: Project; onOpen: (p: Project) => vo
           {project.description}
         </p>
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-          <span className="rounded-full bg-surface px-3 py-1 text-[13px] text-fg">
-            {project.type}
-          </span>
           <span className="text-[13px] text-muted">
             {project.tech.slice(0, 3).join(", ")}
             {project.tech.length > 3 && ` +${project.tech.length - 3}`}
