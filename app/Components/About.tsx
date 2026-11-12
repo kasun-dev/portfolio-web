@@ -26,7 +26,16 @@ export default function About() {
           senses engine RPM and drives a power valve.
         </p>
         <p>
-          Away from the keyboard I shoot mobile photography as{" "}
+          Away from the keyboard I run{" "}
+          <a
+            href="https://www.studioclicked.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium underline decoration-1 underline-offset-4 hover:decoration-2"
+          >
+            Studio Click.ed
+          </a>
+          , a photography studio in Colombo, and share mobile photography as{" "}
           <a
             href={LINKS.photography}
             target="_blank"
