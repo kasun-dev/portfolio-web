@@ -1,5 +1,8 @@
 import { TIMELINE } from "../data/content";
 
+/** Newest first, like a feed: what I do now comes before how I got here. */
+const ITEMS = [...TIMELINE].reverse();
+
 export default function Timeline() {
   return (
     <section id="timeline" aria-labelledby="timeline-title" className="min-h-[calc(100svh-3.5rem)] border-t border-line py-16">
@@ -7,12 +10,12 @@ export default function Timeline() {
         Timeline
       </h2>
       <p className="mt-4 font-display text-xl leading-relaxed text-muted">
-        From the first lecture at SLIIT to where I work today.
+        Where I work today, and the steps back to my first lecture at SLIIT.
       </p>
       <ol className="mt-10">
-        {TIMELINE.map((t, i) => (
+        {ITEMS.map((t, i) => (
           <li key={t.title} className="relative pb-9 pl-8 last:pb-0">
-            {i < TIMELINE.length - 1 && (
+            {i < ITEMS.length - 1 && (
               <span aria-hidden className="absolute bottom-0 left-[5px] top-3 w-px bg-line" />
             )}
             <span
