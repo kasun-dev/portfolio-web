@@ -9,7 +9,7 @@ import { useShell } from "./Shell";
 const AI = process.env.NEXT_PUBLIC_CHAT_ENABLED === "1";
 const SUGGESTIONS = [
   "What has Kasun built?",
-  "Tell me about the Haycarb project",
+  "Tell me about the maintenance project",
   "What is his tech stack?",
   "How can I contact him?",
 ];

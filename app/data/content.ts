@@ -166,9 +166,9 @@ export const PROJECTS: Project[] = [
     title: "AR–AI Guided Maintenance",
     type: "IoT",
     featured: true,
-    status: "Deployed at Haycarb PLC",
+    status: "Piloted in a live factory",
     description:
-      "My final-year research project at SLIIT (PredictiveOps), built with a team of four for Haycarb PLC and deployed on a kiln exhaust blower. I built the IoT part: ESP32 sensor nodes send vibration readings over ESP-NOW to a gateway, which publishes to AWS IoT. A serverless pipeline (Lambda, DynamoDB) cleans the data for the team's fault-diagnosis and predictive-maintenance models.",
+      "My final-year research project at SLIIT (PredictiveOps), built with a team of four for an industrial client and piloted on a kiln exhaust blower. I built the IoT part: ESP32 sensor nodes send vibration readings over ESP-NOW to a gateway, which publishes to AWS IoT. A serverless pipeline (Lambda, DynamoDB) cleans the data for the team's fault-diagnosis and predictive-maintenance models.",
     learned:
       "Designing hardware for failure. Splitting the gateway across two microcontrollers kept the radio from competing with itself, reaching a 96.41% packet delivery rate in a high-interference factory. The cloud pipeline processes each reading in under 300 ms, and a SIM800L cellular backup sends an SMS alert in about 4 seconds even when the facility network is down. I also learned ESP-NOW networking, secure MQTT to AWS IoT and serverless preprocessing.",
     tech: ["ESP32", "ADXL345", "ESP-NOW", "MQTT", "AWS IoT Core", "AWS Lambda", "DynamoDB", "SIM800L GSM", "C++"],
@@ -409,8 +409,8 @@ export const TIMELINE: TimelineItem[] = [
   },
   {
     when: "Final year",
-    title: "Research project with Haycarb PLC",
-    body: "Built the ESP32 sensor network and AWS data pipeline for an AR and AI guided maintenance system, deployed in a live factory.",
+    title: "Research project with an industry partner",
+    body: "Built the ESP32 sensor network and AWS data pipeline for an AR and AI guided maintenance system, piloted in a live factory.",
   },
   {
     when: "2026",
