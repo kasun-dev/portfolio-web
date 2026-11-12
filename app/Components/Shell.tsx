@@ -4,15 +4,16 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
   type ReactNode,
 } from "react";
 import { AnimatePresence } from "framer-motion";
-import type { Project } from "../data/content";
+import { PROJECTS, type Project } from "../data/content";
 import Footer from "./Footer";
-import ProjectDrawer from "./ProjectDrawer";
+import ProjectArticle from "./ProjectArticle";
 import RightRail from "./RightRail";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
@@ -39,13 +40,40 @@ export default function Shell({ children }: { children: ReactNode }) {
   const [selected, setSelected] = useState<Project | null>(null);
   const opener = useRef<HTMLElement | null>(null);
 
+  // A story gets its own address (#project-id) so Back closes it and links can be shared.
+  const pushed = useRef(false);
   const openProject = useCallback((p: Project) => {
-    opener.current = document.activeElement as HTMLElement | null;
+    if (!opener.current) opener.current = document.activeElement as HTMLElement | null;
     setSelected(p);
+    const url = `#project-${p.id}`;
+    if (pushed.current) history.replaceState(null, "", url);
+    else {
+      history.pushState(null, "", url);
+      pushed.current = true;
+    }
   }, []);
   const closeProject = useCallback(() => {
     setSelected(null);
-    opener.current?.focus();
+    opener.current?.focus({ preventScroll: true });
+    opener.current = null;
+    if (pushed.current) {
+      pushed.current = false;
+      history.back();
+    } else if (location.hash.startsWith("#project-")) {
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    const fromHash = () => {
+      const id = location.hash.match(/^#project-(.+)$/)?.[1];
+      const p = id ? PROJECTS.find((x) => x.id === id) : undefined;
+      setSelected(p ?? null);
+      if (!p) pushed.current = false;
+    };
+    fromHash(); // opened from a shared link
+    window.addEventListener("popstate", fromHash);
+    return () => window.removeEventListener("popstate", fromHash);
   }, []);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
@@ -65,7 +93,7 @@ export default function Shell({ children }: { children: ReactNode }) {
         </div>
       </div>
       <AnimatePresence>
-        {selected && <ProjectDrawer key={selected.id} project={selected} onClose={closeProject} />}
+        {selected && <ProjectArticle project={selected} onClose={closeProject} onOpen={openProject} />}
       </AnimatePresence>
     </ShellContext.Provider>
   );

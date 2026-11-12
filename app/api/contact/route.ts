@@ -18,7 +18,12 @@ const json = (body: object, status = 200) =>
 export async function POST(req: Request) {
   const key = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
-  if (!key || !to) return json({ error: "Email is not set up on this server." }, 503);
+  if (!key || !to) {
+    return json(
+      { error: "Email is not set up on this server.", reason: !key ? "RESEND_API_KEY is missing" : "CONTACT_TO_EMAIL is missing" },
+      503,
+    );
+  }
 
   // Best-effort rate limit per visitor (resets when the server instance restarts)
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -59,7 +64,7 @@ export async function POST(req: Request) {
   if (!res.ok) {
     // Shows up in the Vercel function logs, e.g. an unverified sender or recipient
     console.error("Resend rejected the message:", res.status, await res.text().catch(() => ""));
-    return json({ error: "The email service refused the message." }, 502);
+    return json({ error: "The email service refused the message.", reason: `Resend ${res.status}` }, 502);
   }
   return json({ ok: true });
 }

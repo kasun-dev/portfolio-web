@@ -198,7 +198,7 @@ export default function SearchBox() {
                 </p>
               )}
               {(ans.status === "typing" || ans.status === "done") && (
-                <p className="whitespace-pre-wrap px-3 py-2 font-display text-[18px] leading-[1.6] text-fg">
+                <p className="whitespace-pre-wrap px-3 py-2 text-[15px] leading-[1.65] text-fg">
                   {ans.shown}
                 </p>
               )}
