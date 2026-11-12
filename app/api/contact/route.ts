@@ -1,8 +1,7 @@
-import { SITE } from "../../data/content";
-
 /**
  * Sends contact form messages by email with Resend.
- * Needs RESEND_API_KEY. Optional: CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL.
+ * Needs RESEND_API_KEY and CONTACT_TO_EMAIL (the inbox that receives messages).
+ * Optional: CONTACT_FROM_EMAIL.
  * Only runs on a server host (Vercel); the static GitHub Pages build skips it.
  */
 
@@ -18,7 +17,8 @@ const json = (body: object, status = 200) =>
 
 export async function POST(req: Request) {
   const key = process.env.RESEND_API_KEY;
-  if (!key) return json({ error: "Email is not set up on this server." }, 503);
+  const to = process.env.CONTACT_TO_EMAIL;
+  if (!key || !to) return json({ error: "Email is not set up on this server." }, 503);
 
   // Best-effort rate limit per visitor (resets when the server instance restarts)
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     headers: { Authorization: `Bearer ${key}`, "content-type": "application/json" },
     body: JSON.stringify({
       from: process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>",
-      to: [process.env.CONTACT_TO_EMAIL || SITE.email],
+      to: [to],
       reply_to: email,
       subject: `Portfolio message from ${name.replace(/[\r\n]/g, " ")}`,
       html: `<p><strong>${esc(name)}</strong> (${esc(email)})</p><p style="white-space:pre-wrap">${esc(message)}</p>`,
@@ -56,6 +56,10 @@ export async function POST(req: Request) {
     }),
   });
 
-  if (!res.ok) return json({ error: "The email service refused the message." }, 502);
+  if (!res.ok) {
+    // Shows up in the Vercel function logs, e.g. an unverified sender or recipient
+    console.error("Resend rejected the message:", res.status, await res.text().catch(() => ""));
+    return json({ error: "The email service refused the message." }, 502);
+  }
   return json({ ok: true });
 }

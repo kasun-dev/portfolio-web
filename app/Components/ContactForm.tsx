@@ -34,9 +34,10 @@ export default function ContactForm() {
         setStatus("sent");
         return;
       }
-      // A real rejection (bad input, rate limit, email service) is shown as an error.
-      // Anything else means there is no email route here (static hosts), so use the Google Form.
-      if ([400, 429, 502].includes(res.status)) {
+      // Bad input or a rate limit is shown as an error. Anything else (no email route on
+      // a static host, or the email service failing) falls back to the Google Form so
+      // the message is never lost.
+      if ([400, 429].includes(res.status)) {
         setStatus("error");
         return;
       }
