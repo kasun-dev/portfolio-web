@@ -5,6 +5,7 @@ import "./globals.css";
 import { LINKS, SITE } from "./data/content";
 import Providers from "./Components/Providers";
 import Shell from "./Components/Shell";
+import Splash from "./Components/Splash";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -107,6 +108,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <Splash />
         <Providers>
           <Shell>{children}</Shell>
         </Providers>
