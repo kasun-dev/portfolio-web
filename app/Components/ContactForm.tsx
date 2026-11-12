@@ -37,6 +37,8 @@ export default function ContactForm() {
       // Bad input or a rate limit is shown as an error. Anything else (no email route on
       // a static host, or the email service failing) falls back to the Google Form so
       // the message is never lost.
+      const info = await res.clone().json().catch(() => ({}));
+      if (info?.reason) console.warn("Email route failed, using the Google Form instead:", info.reason);
       if ([400, 429].includes(res.status)) {
         setStatus("error");
         return;
