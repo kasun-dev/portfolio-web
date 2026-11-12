@@ -15,12 +15,12 @@ export default function RightRail() {
   return (
     <aside
       aria-label="Highlights"
-      className="hidden w-[280px] shrink-0 border-l border-line pl-8 xl:block"
+      className="hidden w-[256px] shrink-0 border-l border-line pl-6 xl:block"
     >
-      <div className="sticky top-14 space-y-8 py-9 pr-4">
+      <div className="sticky top-14 max-h-[calc(100svh-3.5rem)] space-y-7 overflow-y-auto py-7 pr-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <section>
           <h2 className="text-base font-bold">Featured work</h2>
-          <ul className="mt-5 space-y-5">
+          <ul className="mt-4 space-y-4">
             {featured.map((p) => (
               <li key={p.id}>
                 <button

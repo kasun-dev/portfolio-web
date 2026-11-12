@@ -56,7 +56,7 @@ export default function Shell({ children }: { children: ReactNode }) {
       <Sidebar open={menuOpen} onClose={closeMenu} />
       <div className="lg:pl-60">
         <TopBar onMenu={() => setMenuOpen(true)} />
-        <div className="mx-auto flex w-full max-w-[1040px] justify-center px-4 sm:px-6 xl:justify-between xl:px-0 xl:pl-8">
+        <div className="mx-auto flex w-full max-w-[1000px] justify-center px-4 sm:px-6 xl:justify-between xl:px-0 xl:pl-6">
           <main id="main" className="w-full min-w-0 max-w-[680px]">
             {children}
             <Footer />
