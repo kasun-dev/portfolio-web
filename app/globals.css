@@ -86,6 +86,44 @@ section[id] {
   animation: caret 1s steps(1) infinite;
 }
 
+/* Portrait backdrop: breathing, scan line, flickering hexagon cells */
+@keyframes backdrop-breathe {
+  from {
+    transform: scale(1) translateY(0);
+  }
+  to {
+    transform: scale(1.025) translateY(-0.6%);
+  }
+}
+.backdrop-breathe {
+  animation: backdrop-breathe 18s ease-in-out infinite alternate;
+}
+@keyframes backdrop-scan {
+  from {
+    transform: translateY(-110%);
+  }
+  to {
+    transform: translateY(500%);
+  }
+}
+.backdrop-scan {
+  animation: backdrop-scan 9s linear infinite;
+}
+@keyframes hex-cell {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  45%,
+  55% {
+    opacity: 0.3;
+  }
+}
+.hex-cell {
+  opacity: 0;
+  animation: hex-cell 6s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
