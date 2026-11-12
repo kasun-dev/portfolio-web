@@ -3,9 +3,14 @@
 import { useEffect, useRef, useState, type ComponentType, type SVGProps } from "react";
 import { LINKS, NAV, SITE } from "../data/content";
 import {
+  BookIcon,
   BookmarkIcon,
+  BranchIcon,
+  CameraIcon,
+  ChatIcon,
   CloseIcon,
   HomeIcon,
+  InIcon,
   PenIcon,
   RouteIcon,
   StoriesIcon,
@@ -24,11 +29,11 @@ const ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
 };
 
 const ELSEWHERE = [
-  { label: "GitHub", href: LINKS.github },
-  { label: "LinkedIn", href: LINKS.linkedin },
-  { label: "Medium", href: LINKS.medium },
-  { label: "Instagram", href: LINKS.instagram },
-  { label: "WhatsApp", href: LINKS.whatsapp },
+  { label: "GitHub", href: LINKS.github, Icon: BranchIcon },
+  { label: "LinkedIn", href: LINKS.linkedin, Icon: InIcon },
+  { label: "Medium", href: LINKS.medium, Icon: BookIcon },
+  { label: "Instagram", href: LINKS.instagram, Icon: CameraIcon },
+  { label: "WhatsApp", href: LINKS.whatsapp, Icon: ChatIcon },
 ];
 
 export default function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -87,7 +92,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
         ref={panel}
         id="site-menu"
         aria-label="Site"
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-line bg-bg transition-[transform,visibility] duration-200 lg:visible lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-60 flex-col overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border-r border-line bg-bg transition-[transform,visibility] duration-200 lg:visible lg:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-full max-lg:invisible"
         }`}
       >
@@ -123,7 +128,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
                     href={`#${n.id}`}
                     onClick={onClose}
                     aria-current={on ? "true" : undefined}
-                    className={`flex items-center gap-4 rounded-md px-3 py-2.5 text-[15px] transition-colors ${
+                    className={`flex items-center gap-4 rounded-md px-3 py-2 text-[15px] transition-colors [@media(max-height:760px)]:py-1.5 ${
                       on
                         ? "bg-surface font-semibold text-fg"
                         : "text-muted hover:bg-surface hover:text-fg"
@@ -138,7 +143,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
           </ul>
         </nav>
 
-        <div className="mx-6 my-5 border-t border-line" />
+        <div className="mx-6 my-4 border-t border-line" />
 
         <div className="px-6">
           <h2 className="text-sm font-semibold">Elsewhere</h2>
@@ -149,14 +154,9 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
                   href={l.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="-mx-2 flex items-center gap-3 rounded-md px-2 py-2 text-sm text-muted transition-colors hover:bg-surface hover:text-fg"
+                  className="-mx-2 flex items-center gap-3 rounded-md px-2 py-1.5 text-sm text-muted transition-colors hover:bg-surface hover:text-fg"
                 >
-                  <span
-                    aria-hidden
-                    className="grid h-6 w-6 place-items-center rounded-full bg-surface text-xs font-semibold text-fg"
-                  >
-                    {l.label[0]}
-                  </span>
+                  <l.Icon className="shrink-0" />
                   {l.label}
                 </a>
               </li>
@@ -164,11 +164,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
           </ul>
         </div>
 
-        <div className="mt-auto px-6 py-6 text-[13px] text-muted">
-          <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" className="hover:text-fg">
-            Download CV
-          </a>
-        </div>
+        <div className="pb-4" />
       </aside>
     </>
   );

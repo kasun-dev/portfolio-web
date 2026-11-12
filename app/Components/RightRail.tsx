@@ -2,6 +2,7 @@
 
 import { LINKS, PROJECTS, SITE } from "../data/content";
 import { chip } from "../data/ui";
+import { TypeIcon } from "./Icons";
 import { useShell } from "./Shell";
 
 const TOPICS = ["React", "Next.js", "NestJS", "PostgreSQL", "AWS", "ESP32"];
@@ -14,9 +15,9 @@ export default function RightRail() {
   return (
     <aside
       aria-label="Highlights"
-      className="hidden w-[330px] shrink-0 border-l border-line pl-10 xl:block"
+      className="hidden w-[280px] shrink-0 border-l border-line pl-8 xl:block"
     >
-      <div className="sticky top-14 space-y-9 py-10 pr-6">
+      <div className="sticky top-14 space-y-8 py-9 pr-4">
         <section>
           <h2 className="text-base font-bold">Featured work</h2>
           <ul className="mt-5 space-y-5">
@@ -28,13 +29,7 @@ export default function RightRail() {
                   className="group block w-full text-left"
                 >
                   <span className="flex items-center gap-2 text-[13px] text-muted">
-                    <img
-                      src="./img/avatar-96.webp"
-                      alt=""
-                      width={20}
-                      height={20}
-                      className="h-5 w-5 rounded-full object-cover"
-                    />
+                    <TypeIcon type={p.type} width={16} height={16} />
                     {p.type}
                   </span>
                   <span className="mt-1.5 block text-base font-bold leading-snug group-hover:underline">

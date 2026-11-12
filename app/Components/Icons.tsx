@@ -137,3 +137,55 @@ export const PenIcon = (p: P) => (
     <path d="m14 7 3 3" />
   </svg>
 );
+
+/** Minimal line icons for the places I am elsewhere. */
+export const BranchIcon = (p: P) => (
+  <svg {...stroke({ width: 18, height: 18, ...p })}>
+    <circle cx="6" cy="5.5" r="2.2" />
+    <circle cx="6" cy="18.5" r="2.2" />
+    <circle cx="18" cy="8.5" r="2.2" />
+    <path d="M6 7.7v8.6M18 10.7c0 4-6 3-11 6.2" />
+  </svg>
+);
+export const InIcon = (p: P) => (
+  <svg {...stroke({ width: 18, height: 18, ...p })}>
+    <rect x="3.5" y="3.5" width="17" height="17" rx="3" />
+    <path d="M8 10.5V16M8 7.8v.01M12 16v-5.5M12 13c0-1.6 1-2.6 2.4-2.6s2.1 1 2.1 2.6V16" />
+  </svg>
+);
+export const BookIcon = (p: P) => (
+  <svg {...stroke({ width: 18, height: 18, ...p })}>
+    <path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5M12 6.5c2-1.5 5-2 8-1.5v13c-3-.5-6 0-8 1.5M12 6.5v13" />
+  </svg>
+);
+export const CameraIcon = (p: P) => (
+  <svg {...stroke({ width: 18, height: 18, ...p })}>
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+    <circle cx="12" cy="12" r="3.8" />
+    <path d="M17.3 6.8v.01" />
+  </svg>
+);
+export const ChatIcon = (p: P) => (
+  <svg {...stroke({ width: 18, height: 18, ...p })}>
+    <path d="M4 20l1.2-4.1A8 8 0 1 1 8.2 19z" />
+    <path d="M9 9.5c.3 2.4 2.1 4.2 4.5 4.5l1.2-1.2-1.8-1-.8.7a3 3 0 0 1-1.6-1.6l.7-.8-1-1.8z" />
+  </svg>
+);
+
+/** One small icon per project type, used in place of a photo. */
+const TYPE_PATHS: Record<string, string> = {
+  IoT: "M9 9h6v6H9zM9 4v3M15 4v3M9 17v3M15 17v3M4 9h3M4 15h3M17 9h3M17 15h3",
+  Fullstack: "m12 3 9 5-9 5-9-5zM3 13l9 5 9-5",
+  Frontend: "M3.5 5h17v14h-17zM3.5 9.5h17M7 7.2v.01",
+  Backend: "M4 5h16v5H4zM4 14h16v5H4zM8 7.5v.01M8 16.5v.01",
+  Mobile: "M7 3h10v18H7zM11 18h2",
+  Desktop: "M3 5h18v12H3zM9 21h6M12 17v4",
+  Tool: "M14.5 6.5a4 4 0 0 0-5 5L4 17l3 3 5.5-5.5a4 4 0 0 0 5-5l-2.5 2.5-2-.5-.5-2z",
+};
+export function TypeIcon({ type, ...p }: P & { type: string }) {
+  return (
+    <svg {...stroke({ width: 18, height: 18, ...p })}>
+      <path d={TYPE_PATHS[type] ?? TYPE_PATHS.Tool} />
+    </svg>
+  );
+}
