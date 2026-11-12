@@ -13,33 +13,6 @@ const social = [
   { label: "Email", href: `mailto:${SITE.email}`, Icon: MailIcon },
 ];
 
-function Portrait() {
-  return (
-    <div
-      className="rise relative mx-auto aspect-[4/5] w-full max-w-[340px] lg:mx-0 lg:ml-auto lg:h-[var(--h)] lg:w-[calc(var(--h)*4/5)] lg:max-w-none"
-      // The box is sized from the viewport height so the portrait always fits on screen.
-      style={{ ...delay(0.2), "--h": "min(70svh, 640px)" } as CSSProperties}
-    >
-      {/* The soft shadow (light mode only) lives on this wrapper so it follows the
-          faded silhouette. On the image itself the mask would clip it to a box. */}
-      <div className="absolute inset-0 drop-shadow-[0_6px_16px_rgba(16,18,24,0.28)] dark:drop-shadow-none">
-        {/* Half-body cutout with its white outline baked in; the lower edge fades into the page. */}
-        <img
-          src="./img/kasun.webp"
-          srcSet="./img/kasun-640.webp 640w, ./img/kasun.webp 994w"
-          sizes="(min-width: 1024px) 490px, 340px"
-          alt="Portrait of Kasun Jayamaha in a suit and tie"
-          width={994}
-          height={1300}
-          fetchPriority="high"
-          decoding="async"
-          className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 [-webkit-mask-image:linear-gradient(to_bottom,#000_80%,transparent)] [mask-image:linear-gradient(to_bottom,#000_80%,transparent)]"
-        />
-      </div>
-    </div>
-  );
-}
-
 export default function Hero() {
   return (
     // One viewport tall, with the content centred in the space under the fixed
@@ -65,9 +38,9 @@ export default function Hero() {
       </svg>
 
       <div
-        className={`${container} relative grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]`}
+        className={`${container} relative`}
       >
-        <div>
+        <div className="max-w-2xl">
           {SITE.availability && (
             <p
               className="rise inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm text-muted"
@@ -134,7 +107,6 @@ export default function Hero() {
           </div>
         </div>
 
-        <Portrait />
       </div>
     </section>
   );
