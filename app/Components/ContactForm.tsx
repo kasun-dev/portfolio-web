@@ -35,9 +35,9 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="glass rounded-2xl p-6 sm:p-8"
+      className="mt-12"
     >
-      <h3 className="text-xl font-semibold">Send a message</h3>
+      <h3 className="text-xl font-bold">Send a message</h3>
 
       <div className="mt-6 space-y-5">
         <label className="block text-sm font-medium">

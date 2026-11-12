@@ -2,56 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Colour tokens as RGB triplets so Tailwind can apply opacity (bg-bg/80 etc.) */
+/* Flat white and grey. Colour tokens are RGB triplets so Tailwind can apply opacity. */
 :root {
-  --bg: 244 245 247; /* chalk */
-  --surface: 255 255 255;
-  --fg: 16 18 24; /* ink */
-  --muted: 88 94 110;
-  --line: 218 221 229;
-  --accent: 150 98 0; /* amber, dark enough for text on chalk */
-  --brand: 255 210 63; /* hexagon yellow, used as a fill */
+  --bg: 255 255 255;
+  --surface: 247 247 247; /* light grey fill for chips, search, hover */
+  --fg: 36 36 36;
+  --muted: 107 107 107;
+  --line: 230 230 230;
+  --accent: 36 36 36;
+  --brand: 36 36 36; /* filled buttons */
+  --onbrand: 255 255 255;
+  --font-display: "Source Serif 4 Variable", Georgia, serif; /* reading text */
   color-scheme: light;
 }
 
 .dark {
-  --bg: 16 18 24; /* ink */
-  --surface: 27 30 39; /* graphite */
-  --fg: 244 245 247;
-  --muted: 148 153 168; /* steel */
-  --line: 42 46 58;
-  --accent: 255 210 63;
-  --brand: 255 210 63;
+  --bg: 18 18 18;
+  --surface: 30 30 30;
+  --fg: 235 235 235;
+  --muted: 160 160 160;
+  --line: 44 44 44;
+  --accent: 235 235 235;
+  --brand: 235 235 235;
+  --onbrand: 18 18 18;
   color-scheme: dark;
-}
-
-/* Display face for headings; set on the root so every component can use it */
-:root {
-  --font-display: "Fraunces Variable", Georgia, serif;
-}
-
-/* Frosted glass cards: translucent so the portrait shows through */
-.glass {
-  background: rgb(var(--surface) / 0.42);
-  border: 1px solid rgb(var(--fg) / 0.13);
-  -webkit-backdrop-filter: blur(12px) saturate(1.3);
-  backdrop-filter: blur(12px) saturate(1.3);
-  box-shadow:
-    inset 0 1px 0 rgb(var(--fg) / 0.08),
-    0 18px 40px -26px rgb(0 0 0 / 0.55);
-}
-:root:not(.dark) .glass {
-  background: rgb(var(--surface) / 0.62);
-  border-color: rgb(var(--fg) / 0.1);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.7),
-    0 18px 40px -28px rgb(16 18 24 / 0.35);
-}
-@media (min-width: 1024px) {
-  .glass {
-    -webkit-backdrop-filter: blur(18px) saturate(1.35);
-    backdrop-filter: blur(18px) saturate(1.35);
-  }
 }
 
 html {
@@ -68,89 +42,23 @@ body {
 }
 
 ::selection {
-  background: rgb(var(--brand));
-  color: #101218;
+  background: rgb(var(--fg));
+  color: rgb(var(--bg));
 }
 
 :focus-visible {
   outline: 2px solid rgb(var(--accent));
-  outline-offset: 3px;
+  outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* The fixed header covers the first 4rem of a section when you jump to it, and
-   the section's top padding clears it, so headings land a consistent distance
-   below the header. */
+/* Jumping to a section lands it just below the sticky top bar */
 section[id] {
-  scroll-margin-top: 0;
+  scroll-margin-top: 3.5rem;
 }
 
-/* Pointy-top hexagon, the shape from the portrait artwork */
-.hex {
-  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-}
-
-/* The single page-load sequence in the hero */
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-.rise {
-  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: var(--d, 0s);
-}
-
-@keyframes caret {
-  50% {
-    opacity: 0;
-  }
-}
-.caret {
-  animation: caret 1s steps(1) infinite;
-}
-
-/* Portrait backdrop: breathing, scan line, flickering hexagon cells */
-@keyframes backdrop-breathe {
-  from {
-    transform: scale(1) translateY(0);
-  }
-  to {
-    transform: scale(1.025) translateY(-0.6%);
-  }
-}
-.backdrop-breathe {
-  animation: backdrop-breathe 18s ease-in-out infinite alternate;
-}
-@keyframes backdrop-scan {
-  from {
-    transform: translateY(-110%);
-  }
-  to {
-    transform: translateY(500%);
-  }
-}
-.backdrop-scan {
-  animation: backdrop-scan 9s linear infinite;
-}
-@keyframes hex-cell {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  45%,
-  55% {
-    opacity: 0.3;
-  }
-}
-.hex-cell {
-  opacity: 0;
-  animation: hex-cell 6s ease-in-out infinite;
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

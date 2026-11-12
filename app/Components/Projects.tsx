@@ -1,214 +1,212 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
-import { AnimatePresence, LazyMotion, m } from "framer-motion";
+import { useMemo, useState } from "react";
 import {
-  LINKS,
   PROJECTS,
   PROJECT_TYPES,
+  SITE,
   type Project,
-  type ProjectType,
 } from "../data/content";
-import { btnOutline } from "../data/ui";
 import { ArrowUpRightIcon } from "./Icons";
-import ProjectDrawer from "./ProjectDrawer";
-import Section from "./Section";
+import { useShell } from "./Shell";
 
 const INITIAL = 6;
 
-function Cover({ project }: { project: Project }) {
+function Thumb({ project }: { project: Project }) {
   if (project.cover) {
     return (
       <img
         src={`./img/projects/${project.cover}`}
-        alt={`${project.title} screenshot`}
+        alt=""
         loading="lazy"
+        width={112}
+        height={112}
         className="h-full w-full object-cover object-top"
       />
     );
   }
-  // No screenshot yet: show a hexagon with the project's initials.
   const initials = project.title
     .split(" ")
     .map((w) => w[0])
     .join("")
     .slice(0, 2);
   return (
-    <div className="grid h-full w-full place-items-center bg-bg" aria-hidden>
-      <div className="hex grid h-24 w-[5.5rem] place-items-center bg-brand text-2xl font-semibold text-[#101218]">
-        {initials}
-      </div>
-    </div>
+    <span
+      aria-hidden
+      className="grid h-full w-full place-items-center font-display text-3xl font-bold text-muted"
+    >
+      {initials}
+    </span>
   );
 }
 
-function Card({
-  project,
-  onOpen,
-}: {
-  project: Project;
-  onOpen: (p: Project, trigger: HTMLElement) => void;
-}) {
+function Row({ project, onOpen }: { project: Project; onOpen: (p: Project) => void }) {
   const links = [
     { label: project.repoLabel ?? "Code", href: project.repo },
-    { label: "Live demo", href: project.live },
-    { label: "LinkedIn post", href: project.post },
+    { label: "Live", href: project.live },
+    { label: "Post", href: project.post },
     { label: "Design", href: project.design },
   ].filter((l): l is { label: string; href: string } => Boolean(l.href));
 
   return (
-    <m.li
-      layout
-      initial={{ opacity: 0, scale: 0.97 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.97 }}
-      transition={{ duration: 0.2 }}
-      className="glass flex flex-col overflow-hidden rounded-2xl"
-    >
-      <div className="aspect-[16/9] overflow-hidden border-b border-line bg-bg">
-        <Cover project={project} />
-      </div>
-      <div className="flex flex-1 flex-col p-5">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-xl font-semibold leading-snug">{project.title}</h3>
-          <span className="mt-0.5 shrink-0 rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
-            {project.type}
-          </span>
-        </div>
-        {project.status && (
-          <p className="mt-2 inline-flex items-center gap-2 text-sm text-muted">
-            <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden />
-            {project.status}
-          </p>
-        )}
-        <p className="mt-2 line-clamp-3 text-[15px] leading-relaxed text-muted">
-          {project.description}
-        </p>
-        <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Technologies">
-          {project.tech.slice(0, 4).map((t) => (
-            <li
-              key={t}
-              className="rounded-md border border-line bg-bg/50 px-2 py-0.5 text-xs text-muted"
-            >
-              {t}
-            </li>
-          ))}
-          {project.tech.length > 4 && (
-            <li className="px-1 py-0.5 text-xs text-muted">+{project.tech.length - 4}</li>
-          )}
-        </ul>
-        <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-5">
-          <button
-            type="button"
-            onClick={(e) => onOpen(project, e.currentTarget)}
-            aria-label={`More info about ${project.title}`}
-            className="rounded-full border border-line bg-bg/50 px-4 py-1.5 text-sm font-semibold transition-colors hover:border-fg/40"
-          >
-            More info
-          </button>
-          {links.length > 0 && (
+    <li className="relative flex gap-5 border-b border-line py-7 sm:gap-8">
+      <div className="min-w-0 flex-1">
+        <p className="flex items-center gap-2 text-[13px] text-muted">
+          <img
+            src="./img/avatar-96.webp"
+            alt=""
+            width={20}
+            height={20}
+            className="h-5 w-5 rounded-full object-cover"
+          />
+          <span className="text-fg">{SITE.name}</span>
+          {project.status && (
             <>
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.title}: ${l.label}`}
-                className="inline-flex items-center gap-1 text-sm font-medium underline decoration-brand decoration-2 underline-offset-4"
-              >
-                {l.label}
-                <ArrowUpRightIcon />
-              </a>
-            ))}
+              <span aria-hidden>·</span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" aria-hidden />
+                {project.status}
+              </span>
             </>
           )}
+        </p>
+        <h3 className="mt-2.5 text-xl font-bold leading-snug tracking-tight sm:text-[22px]">
+          <button
+            type="button"
+            onClick={() => onOpen(project)}
+            aria-label={`${project.title}: read more`}
+            className="text-left after:absolute after:inset-0 hover:underline hover:decoration-1 hover:underline-offset-4"
+          >
+            {project.title}
+          </button>
+        </h3>
+        <p className="mt-1.5 line-clamp-2 font-display text-base leading-[1.6] text-muted sm:line-clamp-3">
+          {project.description}
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span className="rounded-full bg-surface px-3 py-1 text-[13px] text-fg">
+            {project.type}
+          </span>
+          <span className="text-[13px] text-muted">
+            {project.tech.slice(0, 3).join(", ")}
+            {project.tech.length > 3 && ` +${project.tech.length - 3}`}
+          </span>
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title}: ${l.label}`}
+              className="relative z-10 inline-flex items-center gap-1 text-[13px] font-medium text-fg underline underline-offset-4 decoration-line hover:decoration-fg"
+            >
+              {l.label}
+              <ArrowUpRightIcon width={13} height={13} />
+            </a>
+          ))}
         </div>
       </div>
-    </m.li>
+      <div className="h-20 w-20 shrink-0 overflow-hidden bg-surface sm:h-28 sm:w-28">
+        <Thumb project={project} />
+      </div>
+    </li>
   );
 }
 
 export default function Projects() {
-  const [type, setType] = useState<"All" | ProjectType>("All");
+  const { query, setQuery, openProject } = useShell();
+  const [tab, setTab] = useState("All");
   const [showAll, setShowAll] = useState(false);
-  const [selected, setSelected] = useState<Project | null>(null);
-  const opener = useRef<HTMLElement | null>(null);
 
-  const open = (p: Project, trigger: HTMLElement) => {
-    opener.current = trigger;
-    setSelected(p);
-  };
-  const close = useCallback(() => {
-    setSelected(null);
-    opener.current?.focus();
-  }, []);
+  const tabs = useMemo(
+    () => [
+      "All",
+      "Featured",
+      ...PROJECT_TYPES.filter((t) => t !== "All" && PROJECTS.some((p) => p.type === t)),
+    ],
+    [],
+  );
 
-  const matching =
-    type === "All" ? PROJECTS : PROJECTS.filter((p) => p.type === type);
-  const visible = showAll ? matching : matching.slice(0, INITIAL);
-  const countFor = (t: "All" | ProjectType) =>
-    t === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.type === t).length;
+  const q = query.trim().toLowerCase();
+  const matching = PROJECTS.filter((p) => {
+    const inTab = tab === "All" || (tab === "Featured" ? p.featured : p.type === tab);
+    if (!inTab) return false;
+    if (!q) return true;
+    return [p.title, p.description, p.type, ...p.tech].join(" ").toLowerCase().includes(q);
+  });
+  const visible = showAll || q ? matching : matching.slice(0, INITIAL);
 
   return (
-    // Animation code loads after the first paint instead of with the page.
-    <LazyMotion features={() => import("./motionFeatures").then((r) => r.default)}>
-    <Section
-      id="projects"
-      title="Projects"
-      intro="Products I run and use every day, plus university work and experiments."
-    >
-      <div role="group" aria-label="Filter projects by type" className="flex flex-wrap gap-2">
-        {PROJECT_TYPES.map((t) => (
-          <button
-            key={t}
-            type="button"
-            aria-pressed={type === t}
-            onClick={() => setType(t)}
-            className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
-              type === t
-                ? "border-brand bg-brand font-semibold text-[#101218]"
-                : "glass text-muted hover:border-fg/40 hover:text-fg"
-            }`}
-          >
-            {t} <span className="opacity-75">{countFor(t)}</span>
-          </button>
-        ))}
+    <section id="projects" aria-labelledby="projects-title" className="border-t border-line pt-12">
+      <h2 id="projects-title" className="text-[28px] font-bold leading-tight tracking-tight">
+        Projects
+      </h2>
+      <p className="mt-3 font-display text-lg leading-relaxed text-muted">
+        Things I have built for university, for clients and for myself.
+      </p>
+
+      <div className="sticky top-14 z-20 mt-8 bg-bg">
+        <div role="group" aria-label="Filter projects" className="flex gap-7 overflow-x-auto border-b border-line">
+          {tabs.map((t) => {
+            const on = tab === t;
+            return (
+              <button
+                key={t}
+                type="button"
+                aria-pressed={on}
+                onClick={() => {
+                  setTab(t);
+                  setShowAll(false);
+                }}
+                className={`relative shrink-0 py-3.5 text-sm transition-colors ${
+                  on
+                    ? "text-fg after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-fg"
+                    : "text-muted hover:text-fg"
+                }`}
+              >
+                {t}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence initial={false} mode="popLayout">
+      <p role="status" className="sr-only">
+        {matching.length} {matching.length === 1 ? "project" : "projects"} shown
+      </p>
+
+      {visible.length > 0 ? (
+        <ul>
           {visible.map((p) => (
-            <Card key={p.id} project={p} onOpen={open} />
+            <Row key={p.id} project={p} onOpen={openProject} />
           ))}
-        </AnimatePresence>
-      </ul>
-
-      <div className="mt-10 flex flex-wrap items-center gap-3">
-        {matching.length > INITIAL && (
+        </ul>
+      ) : (
+        <div className="border-b border-line py-14 text-center">
+          <p className="font-display text-lg text-muted">
+            No projects match &ldquo;{query}&rdquo;.
+          </p>
           <button
             type="button"
-            className={btnOutline}
-            onClick={() => setShowAll((s) => !s)}
-            aria-expanded={showAll}
+            onClick={() => setQuery("")}
+            className="mt-4 text-sm font-medium underline underline-offset-4"
           >
-            {showAll ? "Show fewer" : `Show all ${matching.length} projects`}
+            Clear search
           </button>
-        )}
-        <a
-          href={LINKS.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 px-2 text-sm font-medium underline decoration-brand decoration-2 underline-offset-4"
-        >
-          More on GitHub
-          <ArrowUpRightIcon />
-        </a>
-      </div>
-      <AnimatePresence>
-        {selected && <ProjectDrawer key={selected.id} project={selected} onClose={close} />}
-      </AnimatePresence>
-    </Section>
-    </LazyMotion>
+        </div>
+      )}
+
+      {!showAll && !q && matching.length > INITIAL && (
+        <div className="py-8">
+          <button
+            type="button"
+            onClick={() => setShowAll(true)}
+            className="text-sm font-medium text-fg underline underline-offset-4"
+          >
+            See all {matching.length} projects
+          </button>
+        </div>
+      )}
+    </section>
   );
 }

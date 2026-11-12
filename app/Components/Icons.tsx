@@ -83,3 +83,57 @@ export const CheckIcon = (p: P) => (
     <path d="M20 6 9 17l-5-5" />
   </svg>
 );
+
+export const SearchIcon = (p: P) => (
+  <svg {...stroke({ width: 18, height: 18, ...p })}>
+    <circle cx="11" cy="11" r="6.5" />
+    <path d="m20 20-4-4" />
+  </svg>
+);
+
+export const HomeIcon = (p: P) => (
+  <svg {...stroke(p)}>
+    <path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" />
+  </svg>
+);
+
+export const UserIcon = (p: P) => (
+  <svg {...stroke(p)}>
+    <circle cx="12" cy="8" r="4" />
+    <path d="M4 20c0-4 3.6-6 8-6s8 2 8 6" />
+  </svg>
+);
+
+export const TagIcon = (p: P) => (
+  <svg {...stroke(p)}>
+    <path d="M3 12V4h8l10 10-8 8z" />
+    <circle cx="7.5" cy="8.5" r="1" />
+  </svg>
+);
+
+export const StoriesIcon = (p: P) => (
+  <svg {...stroke(p)}>
+    <path d="M6 3h9l4 4v14H6z" />
+    <path d="M14 3v5h5M9 13h7M9 17h7" />
+  </svg>
+);
+
+export const RouteIcon = (p: P) => (
+  <svg {...stroke(p)}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </svg>
+);
+
+export const BookmarkIcon = (p: P) => (
+  <svg {...stroke(p)}>
+    <path d="M6 3h12v18l-6-4-6 4z" />
+  </svg>
+);
+
+export const PenIcon = (p: P) => (
+  <svg {...stroke(p)}>
+    <path d="M4 20l1-4L16 5l3 3L8 19z" />
+    <path d="m14 7 3 3" />
+  </svg>
+);

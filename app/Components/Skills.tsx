@@ -1,41 +1,54 @@
 import { ALSO_USED, SKILLS, SKILL_EXTRAS } from "../data/content";
-import Honeycomb from "./Honeycomb";
-import Section from "./Section";
+import { chip } from "../data/ui";
 
-const groups: string[] = Array.from(
-  new Set([...SKILLS.map((s) => s.group as string), ...SKILL_EXTRAS.map((e) => e.group)]),
-);
+const ORDER = [
+  "Languages",
+  "Frontend",
+  "Mobile",
+  "Backend",
+  "Databases",
+  "Cloud and DevOps",
+  "Tools",
+  "AI",
+  "IoT and embedded",
+];
+
+const groups = ORDER.map((group) => ({
+  group,
+  items: [
+    ...SKILLS.filter((s) => s.group === group).map((s) => s.name),
+    ...SKILL_EXTRAS.filter((e) => e.group === group).flatMap((e) => e.items),
+  ],
+})).filter((g) => g.items.length > 0);
 
 export default function Skills() {
   return (
-    <Section
-      id="skills"
-      title="Skills"
-      intro="The tools I reach for most, from firmware to cloud."
-    >
-      <div className="grid items-center gap-14 lg:grid-cols-2">
-        <Honeycomb />
-
-        <div>
-          <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-            {groups.map((group) => (
-              <div key={group} className="glass rounded-xl p-4">
-                <dt className="font-display text-lg font-semibold">{group}</dt>
-                <dd className="mt-1 text-muted">
-                  {[
-                    ...SKILLS.filter((s) => s.group === group).map((s) => s.name),
-                    ...(SKILL_EXTRAS.find((e) => e.group === group)?.items ?? []),
-                  ].join(", ")}
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-8 max-w-md text-muted">
-            <span className="font-medium text-fg">Also used in projects: </span>
-            {ALSO_USED.join(", ")}.
-          </p>
-        </div>
-      </div>
-    </Section>
+    <section id="skills" aria-labelledby="skills-title" className="border-t border-line py-12">
+      <h2 id="skills-title" className="text-[28px] font-bold leading-tight tracking-tight">
+        Skills
+      </h2>
+      <p className="mt-3 font-display text-lg leading-relaxed text-muted">
+        What I reach for, grouped by the kind of work.
+      </p>
+      <dl className="mt-8 border-t border-line">
+        {[...groups, { group: "Also used", items: ALSO_USED }].map((g) => (
+          <div
+            key={g.group}
+            className="grid gap-3 border-b border-line py-5 sm:grid-cols-[9rem_1fr] sm:gap-6"
+          >
+            <dt className="pt-1.5 text-sm text-muted">{g.group}</dt>
+            <dd>
+              <ul className="flex flex-wrap gap-2">
+                {g.items.map((name) => (
+                  <li key={name} className={chip}>
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }

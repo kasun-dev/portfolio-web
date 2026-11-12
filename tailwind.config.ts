@@ -13,6 +13,7 @@ export default {
         line: "rgb(var(--line) / <alpha-value>)",
         accent: "rgb(var(--accent) / <alpha-value>)",
         brand: "rgb(var(--brand) / <alpha-value>)",
+        onbrand: "rgb(var(--onbrand) / <alpha-value>)",
       },
       fontFamily: {
         sans: [

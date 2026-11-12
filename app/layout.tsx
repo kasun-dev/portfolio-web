@@ -1,12 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import "@fontsource-variable/fraunces/wght.css";
+import "@fontsource-variable/source-serif-4/wght.css";
 import "./globals.css";
 import { LINKS, SITE } from "./data/content";
-import Footer from "./Components/Footer";
-import Nav from "./Components/Nav";
-import PortraitBackdrop from "./Components/PortraitBackdrop";
 import Providers from "./Components/Providers";
+import Shell from "./Components/Shell";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -60,8 +58,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f4f5f7" },
-    { media: "(prefers-color-scheme: dark)", color: "#101218" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#121212" },
   ],
 };
 
@@ -88,13 +86,13 @@ const jsonLd = {
 };
 
 // Runs before first paint so the page never flashes the wrong theme.
-const themeScript = `try{var t=localStorage.getItem("theme");if(!t){t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}document.documentElement.classList.toggle("dark",t==="dark")}catch(e){document.documentElement.classList.add("dark")}`;
+const themeScript = `try{document.documentElement.classList.toggle("dark",localStorage.getItem("theme")==="dark")}catch(e){}`;
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
@@ -105,15 +103,12 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-[#101218]"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-onbrand"
         >
           Skip to content
         </a>
         <Providers>
-          <PortraitBackdrop />
-          <Nav />
-          {children}
-          <Footer />
+          <Shell>{children}</Shell>
         </Providers>
       </body>
     </html>
