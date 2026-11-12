@@ -53,9 +53,9 @@ export default function Contact() {
             </button>
           </div>
 
-          <ul className="mt-10 border-t border-line">
+          <ul className="glass mt-10 rounded-2xl px-5">
             {profiles.map((p) => (
-              <li key={p.label} className="border-b border-line">
+              <li key={p.label} className="border-b border-line last:border-b-0">
                 <a
                   href={p.href}
                   target="_blank"

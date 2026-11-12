@@ -14,10 +14,10 @@ export default function Education() {
         {CREDENTIALS.map((c) => (
           <li
             key={c.title}
-            className="flex flex-col rounded-2xl border border-line bg-surface p-6"
+            className="glass flex flex-col rounded-2xl p-6"
           >
             <p className="text-sm text-muted">{c.kind}</p>
-            <h3 className="mt-2 text-lg font-semibold leading-snug">{c.title}</h3>
+            <h3 className="mt-2 font-display text-xl font-semibold leading-snug">{c.title}</h3>
             <p className="mt-2 text-pretty text-[15px] leading-relaxed text-muted">{c.detail}</p>
             {c.note && (
               <p className="mt-3 border-l-2 border-brand pl-3 text-sm leading-relaxed text-muted">

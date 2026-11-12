@@ -77,7 +77,7 @@ export default function ProjectDrawer({
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-drawer-title"
-        className="absolute inset-y-0 right-0 flex w-full max-w-xl flex-col border-l border-line bg-surface shadow-2xl"
+        className="absolute inset-y-0 right-0 flex w-full max-w-xl flex-col glass border-l border-line bg-surface/85 shadow-2xl backdrop-blur-xl"
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}

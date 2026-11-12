@@ -35,7 +35,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-2xl border border-line bg-surface p-6 sm:p-8"
+      className="glass rounded-2xl p-6 sm:p-8"
     >
       <h3 className="text-xl font-semibold">Send a message</h3>
 

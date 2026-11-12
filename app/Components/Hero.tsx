@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { LINKS, ROLES, SITE } from "../data/content";
 import { btnOutline, btnPrimary, container } from "../data/ui";
 import { ArrowDownIcon, GitHubIcon, LinkedInIcon, MailIcon } from "./Icons";
+import HeroTerminal from "./HeroTerminal";
 import Typewriter from "./Typewriter";
 
 /** Staggers the single page-load sequence. */
@@ -43,7 +44,7 @@ export default function Hero() {
         <div className="max-w-2xl">
           {SITE.availability && (
             <p
-              className="rise inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm text-muted"
+              className="rise inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-sm text-muted"
               style={delay(0)}
             >
               <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden />
@@ -52,7 +53,7 @@ export default function Hero() {
           )}
 
           <h1
-            className="rise mt-6 text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
+            className="rise mt-6 font-display text-6xl font-semibold leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl"
             style={delay(0.08)}
           >
             Kasun
@@ -105,8 +106,32 @@ export default function Hero() {
               ))}
             </ul>
           </div>
-        </div>
 
+          <dl className="rise mt-10 flex flex-wrap gap-x-10 gap-y-4 text-sm" style={delay(0.4)}>
+            {[
+              ["Based in", SITE.location],
+              ["Working at", `${SITE.company.replace(" (Pvt) Ltd", "")}, Associate`],
+              ["Stack", "React · Next.js · AWS · ESP32"],
+            ].map(([term, detail]) => (
+              <div key={term}>
+                <dt className="text-muted">{term}</dt>
+                <dd className="mt-0.5 font-medium">{detail}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      {/* Desktop only: a terminal that types out what I'm doing now */}
+      <div
+        className="rise pointer-events-none absolute inset-x-0 bottom-10 hidden lg:block"
+        style={delay(0.6)}
+      >
+        <div className={`${container} flex justify-end`}>
+          <div className="pointer-events-auto">
+            <HeroTerminal />
+          </div>
+        </div>
       </div>
     </section>
   );
