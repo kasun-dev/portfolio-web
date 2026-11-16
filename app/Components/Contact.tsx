@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { LINKS, SITE } from "../data/content";
 import { btnPrimary } from "../data/ui";
-import ContactForm from "./ContactForm";
 import { ArrowUpRightIcon, CheckIcon, CopyIcon, MailIcon } from "./Icons";
 
 const profiles = [
@@ -34,7 +33,7 @@ export default function Contact() {
         Contact
       </h2>
       <p className="mt-4 font-display text-xl leading-relaxed text-muted">
-        Have a project, an opportunity or a question? I read every message.
+        Have a project, an opportunity or a question? Email is the quickest way to reach me.
       </p>
 
       <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -71,7 +70,6 @@ export default function Contact() {
         ))}
       </ul>
 
-      <ContactForm />
     </section>
   );
 }

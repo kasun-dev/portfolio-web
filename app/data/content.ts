@@ -34,17 +34,6 @@ export const LINKS = {
 export const MEDIUM_FEED =
   "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@ks2005755";
 
-/** Google Form that receives the contact form submissions. */
-export const CONTACT_FORM = {
-  action:
-    "https://docs.google.com/forms/d/e/1FAIpQLSc2aCuFsjK5n8R9aRmpiOhruipe0iG_nO8n7yjjRVXCwjebnw/formResponse",
-  fields: {
-    name: "entry.1825895740",
-    email: "entry.11226799",
-    message: "entry.674492514",
-  },
-};
-
 export const NAV = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
