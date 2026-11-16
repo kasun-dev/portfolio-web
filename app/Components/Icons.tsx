@@ -189,3 +189,10 @@ export function TypeIcon({ type, ...p }: P & { type: string }) {
     </svg>
   );
 }
+
+export const NibIcon = (p: P) => (
+  <svg {...stroke(p)}>
+    <path d="M4 20h16M6.5 16.5 15 8l3 3-8.5 8.5H6.5z" />
+    <path d="m13 10 3 3" />
+  </svg>
+);
