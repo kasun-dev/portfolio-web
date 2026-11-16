@@ -30,6 +30,10 @@ export const LINKS = {
   cv: "./cv.pdf",
 };
 
+/** Medium posts as JSON (rss2json turns the Medium RSS feed into CORS-friendly JSON). */
+export const MEDIUM_FEED =
+  "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@ks2005755";
+
 /** Google Form that receives the contact form submissions. */
 export const CONTACT_FORM = {
   action:
@@ -46,6 +50,7 @@ export const NAV = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
+  { id: "writing", label: "Writing" },
   { id: "timeline", label: "Timeline" },
   { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
