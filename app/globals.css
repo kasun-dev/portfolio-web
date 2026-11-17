@@ -99,7 +99,7 @@ body {
   }
   70%,
   100% {
-    transform: scale(3);
+    transform: scale(2.6);
     opacity: 0;
   }
 }
