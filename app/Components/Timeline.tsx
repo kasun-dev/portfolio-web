@@ -1,4 +1,5 @@
 import { TIMELINE } from "../data/content";
+import LiveDot from "./LiveDot";
 
 /** Newest first, like a feed: what I do now comes before how I got here. */
 const ITEMS = [...TIMELINE].reverse();
@@ -18,12 +19,16 @@ export default function Timeline() {
             {i < ITEMS.length - 1 && (
               <span aria-hidden className="absolute bottom-0 left-[5px] top-3 w-px bg-line" />
             )}
-            <span
-              aria-hidden
-              className={`absolute left-0 top-[7px] h-[11px] w-[11px] rounded-full ${
-                t.current ? "bg-emerald-600" : "border-2 border-muted bg-bg"
-              }`}
-            />
+            {t.current ? (
+              <span aria-hidden className="absolute left-0 top-[7px] flex h-[11px] w-[11px]">
+                <LiveDot className="!h-[11px] !w-[11px]" />
+              </span>
+            ) : (
+              <span
+                aria-hidden
+                className="absolute left-0 top-[7px] h-[11px] w-[11px] rounded-full border-2 border-muted bg-bg"
+              />
+            )}
             <p className="text-sm text-muted">
               {t.when}
               {t.current && <span className="ml-2 font-medium text-fg">Now</span>}
