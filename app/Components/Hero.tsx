@@ -39,7 +39,7 @@ export default function Hero() {
         <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" className={btnOutline}>
           Download CV
         </a>
-        <a href="#projects" className="px-2 text-sm text-muted hover:text-fg">
+        <a href="#projects" className="py-2 text-sm text-muted transition-colors duration-150 hover:text-fg sm:px-2">
           See {PROJECTS.length} projects
         </a>
       </div>

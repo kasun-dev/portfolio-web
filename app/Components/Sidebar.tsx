@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType, type SVGProps } from "react";
+import { m } from "framer-motion";
+import { iconBtn } from "../data/ui";
 import { LINKS, NAV, SITE } from "../data/content";
 import {
   BookIcon,
@@ -87,9 +89,13 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
 
   return (
     <>
-      {open && (
-        <div className="fixed inset-0 z-40 bg-black/40 lg:hidden" onClick={onClose} aria-hidden />
-      )}
+      <div
+        className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-200 lg:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={onClose}
+        aria-hidden
+      />
       <aside
         ref={panel}
         id="site-menu"
@@ -102,7 +108,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
           <a
             href="#home"
             onClick={onClose}
-            className="font-display text-[22px] font-bold leading-none tracking-tight"
+            className="whitespace-nowrap font-display text-[20px] font-bold leading-none tracking-tight lg:text-[22px]"
           >
             {SITE.name}
           </a>
@@ -113,7 +119,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
               document.getElementById("menu-button")?.focus();
             }}
             aria-label="Close menu"
-            className="grid h-10 w-10 place-items-center rounded-full text-muted hover:bg-surface hover:text-fg lg:hidden"
+            className={`${iconBtn} lg:hidden`}
           >
             <CloseIcon />
           </button>
@@ -128,16 +134,27 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
                 <li key={n.id}>
                   <a
                     href={`#${n.id}`}
-                    onClick={onClose}
+                    onClick={() => {
+                      setActive(n.id);
+                      onClose();
+                    }}
                     aria-current={on ? "true" : undefined}
-                    className={`flex items-center gap-4 rounded-md px-3 py-2 text-[15px] transition-colors [@media(max-height:760px)]:py-1.5 ${
-                      on
-                        ? "bg-surface font-semibold text-fg"
-                        : "text-muted hover:bg-surface hover:text-fg"
+                    className={`relative flex items-center rounded-md px-3 py-2 text-[15px] transition-colors duration-150 [@media(max-height:760px)]:py-1.5 ${
+                      on ? "font-semibold text-fg" : "text-muted hover:bg-surface hover:text-fg"
                     }`}
                   >
-                    <Icon strokeWidth={on ? 2.3 : 1.7} />
-                    {n.label}
+                    {on && (
+                      <m.span
+                        layoutId="nav-pill"
+                        aria-hidden
+                        className="absolute inset-0 rounded-md bg-surface"
+                        transition={{ type: "spring", stiffness: 520, damping: 42 }}
+                      />
+                    )}
+                    <span className="relative flex items-center gap-4">
+                      <Icon strokeWidth={on ? 2.3 : 1.7} />
+                      {n.label}
+                    </span>
                   </a>
                 </li>
               );
@@ -156,7 +173,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
                   href={l.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="-mx-2 flex items-center gap-3 rounded-md px-2 py-1.5 text-sm text-muted transition-colors hover:bg-surface hover:text-fg"
+                  className="-mx-2 flex items-center gap-3 rounded-md px-2 py-1.5 text-sm text-muted transition-colors duration-150 hover:bg-surface hover:text-fg"
                 >
                   <l.Icon className="shrink-0" />
                   {l.label}

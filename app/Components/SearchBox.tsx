@@ -49,6 +49,7 @@ export default function SearchBox() {
   const history = useRef<Msg[]>([]);
   const wrap = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const run = useRef(0); // ignores replies that arrive after the visitor moved on
 
@@ -118,6 +119,22 @@ export default function SearchBox() {
     }
   }
 
+  /** Arrow keys move through the results; Esc returns to the field. */
+  function onPanelKey(e: React.KeyboardEvent) {
+    if (e.key === "Escape") {
+      setOpen(false);
+      input.current?.focus();
+      return;
+    }
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    const items = [...(panel.current?.querySelectorAll<HTMLElement>("button, a") ?? [])];
+    const i = items.indexOf(document.activeElement as HTMLElement);
+    e.preventDefault();
+    if (e.key === "ArrowDown") items[Math.min(i + 1, items.length - 1)]?.focus();
+    else if (i <= 0) input.current?.focus();
+    else items[i - 1].focus();
+  }
+
   function showInProjects() {
     setQuery(draft.trim());
     setOpen(false);
@@ -146,7 +163,7 @@ export default function SearchBox() {
           if (AI) ask(q);
           else showInProjects();
         }}
-        className="flex h-10 items-center gap-2 rounded-full bg-surface px-4"
+        className="flex h-10 items-center gap-2 rounded-full bg-surface px-4 ring-1 ring-transparent transition-shadow duration-150 focus-within:ring-fg/30"
       >
         <SearchIcon className="shrink-0 text-muted" />
         <label htmlFor="site-search" className="sr-only">
@@ -175,13 +192,20 @@ export default function SearchBox() {
               setOpen(false);
               input.current?.blur();
             }
+            if (e.key === "ArrowDown" && open) {
+              e.preventDefault();
+              panel.current?.querySelector<HTMLElement>("button, a")?.focus();
+            }
           }}
           className="h-full w-full min-w-0 bg-transparent text-sm text-fg placeholder:text-muted focus:outline-none"
         />
       </form>
 
       {open && (q || AI) && (
-        <div className="z-40 max-h-[75svh] overflow-y-auto rounded-xl border border-line bg-bg p-2 shadow-xl max-sm:fixed max-sm:inset-x-3 max-sm:top-[3.75rem] sm:absolute sm:left-0 sm:top-12 sm:w-[560px]">
+        <div
+          ref={panel}
+          onKeyDown={onPanelKey}
+          className="pop-in z-40 max-h-[75svh] overflow-y-auto rounded-xl border border-line bg-bg p-2 shadow-xl max-sm:fixed max-sm:inset-x-3 max-sm:top-[3.75rem] sm:absolute sm:left-0 sm:top-12 sm:w-[560px]">
           {ans ? (
             <div aria-live="polite">
               <p className="px-3 pb-1 pt-2 text-[13px] text-muted">{ans.q}</p>
