@@ -1,4 +1,5 @@
-import { SYSTEM_PROMPT } from "../../data/knowledge";
+import { blogKnowledge } from "../../data/blog";
+import { buildSystemPrompt } from "../../data/knowledge";
 
 /**
  * Chat assistant backed by the Gemini API.
@@ -52,6 +53,7 @@ export async function POST(req: Request) {
   // Gemini wants the conversation to start with the visitor
   while (messages[0].role !== "user") messages.shift();
 
+  const systemPrompt = buildSystemPrompt(await blogKnowledge());
   const model = process.env.GEMINI_MODEL || "gemini-3.5-flash-lite";
   let res: Response;
   try {
@@ -61,12 +63,12 @@ export async function POST(req: Request) {
         method: "POST",
         headers: { "content-type": "application/json", "x-goog-api-key": key },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          systemInstruction: { parts: [{ text: systemPrompt }] },
           contents: messages.map((m) => ({
             role: m.role === "user" ? "user" : "model",
             parts: [{ text: m.content }],
           })),
-          generationConfig: { temperature: 0.3, maxOutputTokens: 500 },
+          generationConfig: { temperature: 0.3, maxOutputTokens: 600 },
         }),
       },
     );
