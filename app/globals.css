@@ -74,6 +74,36 @@ body {
     stroke 0.3s ease !important;
 }
 
+/* "Live" status dot: a slow ring expands from the dot and fades out */
+.live-dot {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #059669;
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #059669;
+  animation: live-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes live-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
 /* Small entrance for menus and filtered lists */
 .pop-in {
   animation: pop-in 0.14s ease-out;

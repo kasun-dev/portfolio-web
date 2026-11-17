@@ -3,6 +3,7 @@
 import { LINKS, PROJECTS, SITE } from "../data/content";
 import { chip } from "../data/ui";
 import { TypeIcon } from "./Icons";
+import LiveDot from "./LiveDot";
 import { useShell } from "./Shell";
 
 const TOPICS = ["React", "Next.js", "NestJS", "PostgreSQL", "AWS", "ESP32"];
@@ -57,7 +58,7 @@ export default function RightRail() {
         <section>
           <h2 className="text-base font-bold">Right now</h2>
           <p className="mt-3 flex items-start gap-2 text-sm leading-relaxed text-muted">
-            <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" aria-hidden />
+            <LiveDot className="mt-1.5" />
             {SITE.availability}
           </p>
         </section>

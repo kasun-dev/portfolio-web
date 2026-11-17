@@ -1,6 +1,7 @@
 import { LINKS, PROJECTS, SITE } from "../data/content";
 import { btnOutline, btnPrimary } from "../data/ui";
 import { MailIcon } from "./Icons";
+import LiveDot from "./LiveDot";
 
 /** The top of the page reads like a Medium profile: photo, name, one line, actions. */
 export default function Hero() {
@@ -28,7 +29,7 @@ export default function Hero() {
         These pages are a feed of the things I have made.
       </p>
       <p className="mt-5 flex items-center gap-2 text-sm text-muted">
-        <span className="h-2 w-2 rounded-full bg-emerald-600" aria-hidden />
+        <LiveDot />
         {SITE.availability}
       </p>
       <div className="mt-8 flex flex-wrap items-center gap-3">
