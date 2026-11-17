@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { m } from "framer-motion";
 import {
   PROJECTS,
   PROJECT_TYPES,
@@ -148,13 +149,19 @@ export default function Projects() {
                   setTab(t);
                   setShowAll(false);
                 }}
-                className={`relative shrink-0 py-3.5 text-sm transition-colors ${
-                  on
-                    ? "text-fg after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-fg"
-                    : "text-muted hover:text-fg"
+                className={`relative shrink-0 py-3.5 text-sm transition-colors duration-150 ${
+                  on ? "text-fg" : "text-muted hover:text-fg"
                 }`}
               >
                 {t}
+                {on && (
+                  <m.span
+                    layoutId="tab-line"
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-px bg-fg"
+                    transition={{ type: "spring", stiffness: 520, damping: 42 }}
+                  />
+                )}
               </button>
             );
           })}
@@ -175,7 +182,7 @@ export default function Projects() {
       </p>
 
       {visible.length > 0 ? (
-        <ul>
+        <ul key={`${tab}-${q}`} className="fade-in">
           {visible.map((p) => (
             <Row key={p.id} project={p} onOpen={openProject} />
           ))}
