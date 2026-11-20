@@ -428,6 +428,11 @@ export const CREDENTIALS = [
   },
   {
     kind: "Certification",
+    title: "Introduction to the Internet of Things and Embedded Systems",
+    detail: "University of California, Irvine, issued Nov 2026",
+  },
+  {
+    kind: "Certification",
     title: "AI/ML Engineer, Stage 1",
     detail: "Centre for Open and Distance Education (CODE), SLIIT",
   },
